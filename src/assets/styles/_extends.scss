@@ -1,0 +1,108 @@
+%text-style-header1 {
+  font-family: $font-montserrat;
+  font-weight: 700;
+  font-size: 18px;
+
+  @include onDesktop {
+    font-size: 32px;
+  }
+}
+
+%text-style-header2 {
+  font-family: $font-montserrat;
+  font-weight: 700;
+  font-size: 14px;
+
+  @include onDesktop {
+    font-size: 22px;
+  }
+}
+
+%text-style-desktop-header-inactive-menu {
+  font-family: $font-montserrat;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+%text-style-buttons-and-tabs {
+  font-family: $font-montserrat;
+  font-weight: 700;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 18px;
+  }
+}
+
+%text-style-back-button-label {
+  font-family: $font-montserrat;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+%text-style-input-field-title {
+  font-family: $font-montserrat;
+  font-weight: 600;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 14px;
+  }
+}
+
+%text-style-desktop-header-active-menu {
+  font-family: $font-montserrat;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+%text-style-empty-state-message {
+  font-family: $font-montserrat;
+  font-weight: 500;
+  font-size: 14px;
+
+  @include onDesktop {
+    font-size: 18px;
+  }
+}
+
+%text-style-error-message {
+  font-family: $font-montserrat;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 14px;
+  }
+}
+
+%text-style-listing-information {
+  font-family: $font-open-sans;
+  font-weight: 600;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 16px;
+  }
+}
+
+%text-style-body-text {
+  font-family: $font-open-sans;
+  font-weight: 400;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 18px;
+  }
+}
+
+%text-style-input-field {
+  font-family: $font-open-sans;
+  font-weight: 400;
+  font-size: 12px;
+
+  @include onDesktop {
+    font-size: 14px;
+  }
+}
