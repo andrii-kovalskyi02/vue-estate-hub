@@ -18,10 +18,11 @@
   }
 }
 
-%text-style-desktop-header-inactive-menu {
+%text-style-desktop-header-active-menu {
   font-family: $font-montserrat;
   font-weight: 700;
   font-size: 18px;
+  color: $text-color-primary;
 }
 
 %text-style-buttons-and-tabs {
@@ -50,10 +51,11 @@
   }
 }
 
-%text-style-desktop-header-active-menu {
+%text-style-desktop-header-inactive-menu {
   font-family: $font-montserrat;
   font-weight: 500;
   font-size: 18px;
+  color: $tertiary-color-2;
 }
 
 %text-style-empty-state-message {
