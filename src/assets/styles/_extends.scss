@@ -2,6 +2,7 @@
   font-family: $font-montserrat;
   font-weight: 700;
   font-size: 18px;
+  color: $text-color-primary;
 
   @include onDesktop {
     font-size: 32px;
@@ -12,16 +13,18 @@
   font-family: $font-montserrat;
   font-weight: 700;
   font-size: 14px;
+  color: $text-color-primary;
 
   @include onDesktop {
     font-size: 22px;
   }
 }
 
-%text-style-desktop-header-inactive-menu {
+%text-style-desktop-header-active-menu {
   font-family: $font-montserrat;
   font-weight: 700;
   font-size: 18px;
+  color: $text-color-primary;
 }
 
 %text-style-buttons-and-tabs {
@@ -50,10 +53,11 @@
   }
 }
 
-%text-style-desktop-header-active-menu {
+%text-style-desktop-header-inactive-menu {
   font-family: $font-montserrat;
   font-weight: 500;
   font-size: 18px;
+  color: $tertiary-color-2;
 }
 
 %text-style-empty-state-message {
@@ -71,6 +75,7 @@
   font-style: italic;
   font-weight: 500;
   font-size: 12px;
+  color: $background-color-2;
 
   @include onDesktop {
     font-size: 14px;
@@ -81,16 +86,18 @@
   font-family: $font-open-sans;
   font-weight: 600;
   font-size: 12px;
+  color: $secondary-color;
 
   @include onDesktop {
     font-size: 16px;
   }
 }
 
-%text-style-body-text {
+%text-style-body {
   font-family: $font-open-sans;
   font-weight: 400;
   font-size: 12px;
+  color: $tertiary-color-2;
 
   @include onDesktop {
     font-size: 18px;
