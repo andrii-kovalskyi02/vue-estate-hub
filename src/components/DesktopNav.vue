@@ -2,7 +2,7 @@
   <nav class="nav">
     <ul className="nav__list">
         <li>
-          <RouterLink to="/">
+          <RouterLink :to="{ name: 'Houses'}">
             <img
               src="@/assets/images/img_logo_dtt@3x.png"
               alt="DTT Logo"
@@ -42,7 +42,7 @@ import { routes } from '@/router';
     display: flex;
     align-items: center;
     gap: 50px;
-    padding-left: 15px;
+    padding-left: 25px;
 
     list-style-type: none;
   }

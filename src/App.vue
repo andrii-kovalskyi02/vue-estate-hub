@@ -2,7 +2,9 @@
   <div class="app">
     <TheHeader />
 
-    <RouterView />
+    <main class="app__main">
+      <RouterView />
+    </main>
   </div>
 </template>
 
@@ -16,7 +18,18 @@ import TheHeader from '@/components/TheHeader.vue'
 @import "@/assets/styles/_reset";
 
 .app {
-  margin: 0 auto;
   background-color: $background-color-1;
+  
+  &__main {
+    margin: 0 auto;
+    padding: 0 25px calc($mobileHeaderHeight + 20px);
+    min-width: 320px;
+    max-width: 1320px;
+    min-height: 100vh;
+
+    @include onTablet {
+      padding-bottom: 20px;
+    }
+  }
 }
 </style>

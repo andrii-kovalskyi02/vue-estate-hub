@@ -61,5 +61,13 @@ withDefaults(defineProps<{
   &--size {
     background-image: url(@/assets/images/icons/ic_size@3x.png);
   }
+
+  &--search {
+    background-image: url(@/assets/images/icons/ic_search@3x.png);
+  }
+
+  &--clear {
+    background-image: url(@/assets/images/icons/ic_clear@3x.png);
+  }
 }
 </style>

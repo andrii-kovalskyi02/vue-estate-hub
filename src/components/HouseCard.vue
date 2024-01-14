@@ -67,7 +67,6 @@ const cardAddress = computed(() => `${location.zip} ${location.city}`)
   border-radius: 10px;
   background-color: $background-color-2;
 
-  animation: $initialAnimation;
   box-shadow: $primaryShadowBox;
 
   @include hover(box-shadow, $primaryHoverShadowBox);
