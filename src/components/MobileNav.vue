@@ -5,7 +5,10 @@
         class="nav__item"
       >
         <RouterLink
-          :to="{ name: 'Houses' }"
+          :to="{
+            name: 'Houses',
+            query: $route.query
+          }"
           class="nav__link"
         >
           <TheIcon type="house" :isActive="isActiveLink('Houses')" />

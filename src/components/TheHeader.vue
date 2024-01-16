@@ -23,6 +23,7 @@ const shouldRenderDesktopNav = computed(() => clientWidth.value >= 768)
 .header {
   position: fixed;
   bottom: 0;
+  z-index: 100;
   width: 100%;
   background-color: $background-color-2;
   box-shadow: $primaryShadowBox;

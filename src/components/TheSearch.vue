@@ -28,12 +28,13 @@
 import { onUnmounted, ref, watch, watchEffect } from 'vue'
 import TheIcon from './TheIcon.vue'
 import { useSearchStore } from '@/stores/search'
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import debounce from 'lodash.debounce';
 import CustomButton from './CustomButton.vue';
 
 const searchStore = useSearchStore()
 const router = useRouter()
+const route = useRoute()
 const query = ref('')
 const debounceDelay = ref(500)
 const loadingTimeout = ref<number>()
@@ -53,7 +54,10 @@ watchEffect(() => {
 
   router.push({
     name: 'Houses',
-    query: query.value ? { query: query.value } : {},
+    query: {
+      ...route.query,
+      query: query.value ? query.value : undefined
+    },
   })
 })
 
@@ -81,7 +85,7 @@ onUnmounted(() => clearTimeout(loadingTimeout.value))
   align-items: center;
 
   @include onTablet {
-    width: 35%;
+    width: 38%;
   }
 
   &__search-icon {
@@ -103,7 +107,7 @@ onUnmounted(() => clearTimeout(loadingTimeout.value))
     @extend %text-style-input-field;
 
     @include onTablet {
-      height: 40px;
+      height: 46px;
       padding-left: 55px;
     }
 

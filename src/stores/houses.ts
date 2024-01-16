@@ -4,7 +4,7 @@ import { getHouses } from '@/api/houses'
 import type { House } from '@/types/House'
 
 export const useHousesStore = defineStore('houses', () => {
-  const houses = ref<House[]>()
+  const houses = ref<House[]>([])
   const loading = ref(false)
   const error = ref<any>(null)
 

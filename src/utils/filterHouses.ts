@@ -1,5 +1,4 @@
-import type { House } from "@/types/House";
-
+import type { House } from "@/types/House"
 
 export function filterHouses(
   houses: House[] = [],
@@ -11,7 +10,11 @@ export function filterHouses(
 
   const formattedSearchQuery = searchQuery.toLowerCase()
 
-  return houses.filter(({ price, size, location: { city, houseNumber, street, zip } }) => {
+  return houses.filter(({
+    price,
+    size, 
+    location: { city, houseNumber, street, zip }
+  }) => {
     const houseData = [
       `${street} ${houseNumber}`.toLowerCase(),
       price.toString(),
@@ -20,11 +23,6 @@ export function filterHouses(
       city.toLowerCase(),
     ]
 
-    // Check if any property of the house matches the search query
     return houseData.some(data => data.includes(formattedSearchQuery))
-    // const normalizedProductName = name.toLowerCase().replace(/\s/g, '')
-
-    // return formattedSearchQuery
-    //   .every(searchTerm => normalizedProductName.includes(searchTerm))
   })
 }

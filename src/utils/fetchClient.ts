@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiKey = 'gVCEYp3twxy01oMGquN7-SWDHK4Bc5XJ'
+const API_KEY = 'gVCEYp3twxy01oMGquN7-SWDHK4Bc5XJ'
 const BASE_URL = 'https://api.intern.d-tt.nl/api/houses'
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE'
@@ -16,7 +16,7 @@ async function request<T>(
       url: BASE_URL + url,
       data: payload,
       headers: {
-        'X-Api-Key': apiKey,
+        'X-Api-Key': API_KEY,
       },
     })
 

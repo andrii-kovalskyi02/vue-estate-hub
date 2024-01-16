@@ -2,7 +2,7 @@
   <nav class="nav">
     <ul className="nav__list">
         <li>
-          <RouterLink :to="{ name: 'Houses'}">
+          <RouterLink :to="{ name: 'Houses', query: $route.query }">
             <img
               src="@/assets/images/img_logo_dtt@3x.png"
               alt="DTT Logo"
@@ -16,7 +16,10 @@
           class="nav__item"
         >
           <RouterLink
-            :to="{ name }"
+            :to="{
+              name,
+              query: name === 'Houses' ? $route.query : {}
+            }"
             class="nav__link"
           >
             {{ name }}

@@ -19,10 +19,11 @@ import TheHeader from '@/components/TheHeader.vue'
 
 .app {
   background-color: $background-color-1;
+  color: $text-color-primary;
   
   &__main {
     margin: 0 auto;
-    padding: 0 25px calc($mobileHeaderHeight + 20px);
+    padding: 0 25px calc($mobileHeaderHeight + 18px);
     min-width: 320px;
     max-width: 1320px;
     min-height: 100vh;

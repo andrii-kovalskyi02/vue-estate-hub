@@ -24,8 +24,12 @@ defineProps<{
 .housesList {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   list-style: none;
+
+  @include onTablet {
+    gap: 18px;
+  }
 }
 
 .list-move,
