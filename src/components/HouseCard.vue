@@ -1,5 +1,5 @@
 <template>
-  <div className="card">
+  <section className="card">
     <RouterLink
       :to="{ name: 'house', params: { 'houseId': id }}"
       className="card__link"
@@ -12,7 +12,9 @@
       <div class="card__info-wrapper">
         <div class="card__main-info-wrapper">
           <h2 className="card__title">{{ cardTitle }}</h2>
-          <h3 className="card__price">&euro; {{ formatNumber(price) }}</h3>
+          <h3 className="card__price">
+            &euro; {{ formatNumber(price) }}
+          </h3>
           <h3 className="card__address">{{ cardAddress }}</h3>
         </div>
 
@@ -38,7 +40,7 @@
         </div>
       </div>
     </RouterLink>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -116,6 +118,7 @@ const cardAddress = computed(() => `${location.zip} ${location.city}`)
 
   &__address {
     @extend %text-style-body;
+    color: $tertiary-color-2;
   }
 
   &__specs-container {

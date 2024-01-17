@@ -2,26 +2,22 @@
   <nav class="nav">
     <ul className="nav__list">
       <li
+        v-for="{ name } in routes.slice(0, 2)"
+        :key="name"
         class="nav__item"
       >
         <RouterLink
           :to="{
-            name: 'Houses',
-            query: $route.query
+            name,
+            query: name === 'Houses' ? $route.query : {}
           }"
           class="nav__link"
+          :aria-current="$route.name === name ? 'page' : null"
         >
-          <TheIcon type="house" :isActive="isActiveLink('Houses')" />
-        </RouterLink>
-      </li>
-      <li
-        class="nav__item"
-      >
-        <RouterLink
-          :to="{ name: 'About' }"
-          class="nav__link"
-        >
-          <TheIcon type="about" :isActive="isActiveLink('About')" />
+          <TheIcon
+            :type="getIconType(name)"
+            :isActive="$route.name === name"
+          />
         </RouterLink>
       </li>
     </ul>
@@ -29,11 +25,13 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, useRoute } from 'vue-router'
+import { RouterLink } from 'vue-router'
+import { routes } from '@/router'
 import TheIcon from './TheIcon.vue'
 
-const route = useRoute()
-const isActiveLink = (routeName: string) => route.name === routeName
+const getIconType = (name: string) => {
+  return name === 'Houses' ? 'house' : name.toLowerCase()
+}
 </script>
 
 <style scoped lang="scss">

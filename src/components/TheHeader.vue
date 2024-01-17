@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header class="header" role="banner" aria-label="Site header">
     <div class="header__content">
       <DesktopNav v-if="shouldRenderDesktopNav" />
       <MobileNav v-else/>

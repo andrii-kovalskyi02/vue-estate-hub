@@ -1,5 +1,5 @@
 <template>
-  <h3 class="count">
+  <h3 class="count" tabindex="0">
     {{ resultsMessage }}
   </h3>
 </template>

@@ -5,7 +5,6 @@
       [`button--${customClass}`]: true,
       [`button--${customClass}-active`]: isActive
     }"
-    @click="$emit('click')"
   >
     <slot />
   </button>

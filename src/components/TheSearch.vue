@@ -16,8 +16,10 @@
 
     <CustomButton
       v-if="query"
+      type="reset"
       customClass="clear"
-      @click="clearSearch"
+      aria-label="Clear search query"
+      @click="resetSearchInput"
     >
       <TheIcon type="clear"/>
     </CustomButton>
@@ -39,7 +41,7 @@ const query = ref('')
 const debounceDelay = ref(500)
 const loadingTimeout = ref<number>()
 
-const clearSearch = () => {
+const resetSearchInput = () => {
   query.value = ''
 }
 

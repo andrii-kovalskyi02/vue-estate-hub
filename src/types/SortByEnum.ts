@@ -3,9 +3,9 @@ enum SortBy {
   Size = 'size'
 }
 
-const sortByArray = [
+const sortByValues = [
   { value: SortBy.Price, label: 'Price' },
   { value: SortBy.Size, label: 'Size' },
 ]
 
-export { SortBy, sortByArray }
+export { SortBy, sortByValues }

@@ -1,7 +1,8 @@
 <template>
   <div class="sort-container" role="group" aria-label="Sort Houses">
-    <template v-for="{ value, label } in sortByArray" :key="value">
+    <template v-for="{ value, label } in sortByValues" :key="value">
       <CustomButton
+        type="button"
         :customClass="`sort-by-${value}`"
         :isActive="$route.query.sort === value"
         :aria-label="`Sort by ${label}`"
@@ -15,7 +16,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { SortBy, sortByArray } from '@/types/SortByEnum'
+import { SortBy, sortByValues } from '@/types/SortByEnum'
 import CustomButton from './CustomButton.vue'
 
 const router = useRouter()

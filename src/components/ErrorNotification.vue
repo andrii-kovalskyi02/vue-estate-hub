@@ -1,7 +1,7 @@
 <template>
-  <div class="error">
+  <section class="error" role="alert">
     <h2 class="error__message">{{ errorMessage }}</h2>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

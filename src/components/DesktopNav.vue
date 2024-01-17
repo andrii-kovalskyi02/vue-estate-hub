@@ -21,6 +21,7 @@
               query: name === 'Houses' ? $route.query : {}
             }"
             class="nav__link"
+            :aria-current="$route.name === name ? 'page' : null"
           >
             {{ name }}
           </RouterLink>
@@ -31,8 +32,7 @@
 
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { routes } from '@/router';
-
+import { routes } from '@/router'
 </script>
 
 <style scoped lang="scss">

@@ -12,7 +12,10 @@
         </div>
         <HousesList :houses="filteredHouses"/>
       </template>
-      <NotFound v-else />
+
+      <div v-else class="houses-view__not-found-wrapper">
+        <NotFound>No results found. <br> Please try another keyword.</NotFound>
+      </div>
     </template>
     <LoadingIndicator v-else-if="!error" />
     <ErrorNotification v-else :error-message="error" />
@@ -90,6 +93,10 @@ onMounted(() => housesStore.fetchData())
     @include onTablet {
       margin-bottom: 20px;
     }
+  }
+
+  &__not-found-wrapper {
+    margin-top: 150px;
   }
 }
 </style>
