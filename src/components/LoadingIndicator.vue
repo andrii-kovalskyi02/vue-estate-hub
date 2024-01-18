@@ -1,5 +1,5 @@
 <template>
-  <div class="loading">
+  <div class="loading" role="status" aria-label="Loading" tabindex="0">
     <span>•</span>
     <span>•</span>
     <span>•</span>

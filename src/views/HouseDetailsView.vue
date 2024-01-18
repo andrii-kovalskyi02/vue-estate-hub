@@ -1,5 +1,5 @@
 <template>
-  <div class=""></div>
+  <div class="">House ID: {{$route.params.houseId}}</div>
 </template>
 
 <script setup lang="ts">

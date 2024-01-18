@@ -5,18 +5,20 @@ export const routes = [
   {
     path: '/',
     name: 'Houses',
-    component: HousesView
+    component: HousesView,
+    children: [
+      {
+        path: 'houses/:houseId',
+        name: 'House',
+        component: () => import('@/views/HouseDetailsView.vue')
+      },
+    ]
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/AboutView.vue')
-  },
-  {
-    path: '/house/:houseId',
-    name: 'house',
-    component: () => import('@/views/HouseDetailsView.vue')
-  },
+    component: () => import('@/views/AboutView.vue'),
+  }
 ]
 
 const router = createRouter({

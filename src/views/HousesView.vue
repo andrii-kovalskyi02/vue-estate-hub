@@ -1,25 +1,27 @@
 <template>
-  <section class="houses-view">
-    <div v-if="!error && houses.length" class="houses-view__filter-container">
-      <TheSearch />
-      <HousesSorter />
-    </div>
-
-    <template v-if="!searchStore.isSearchLoading && !loading && !error">
-      <template v-if="filteredHouses.length">
-        <div v-if="searchStore.searchQuery" class="houses-view__search-count">
-          <SearchResultsCount :filteredData="filteredHouses" />
-        </div>
-        <HousesList :houses="filteredHouses"/>
-      </template>
-
-      <div v-else class="houses-view__not-found-wrapper">
-        <NotFound>No results found. <br> Please try another keyword.</NotFound>
+  <template v-if="$route.path === '/'">
+    <section class="houses-view">
+      <div v-if="!error && houses.length" class="houses-view__filter-container">
+        <TheSearch />
+        <HousesSorter />
       </div>
-    </template>
-    <LoadingIndicator v-else-if="!error" />
-    <ErrorNotification v-else :error-message="error" />
-  </section>
+      <template v-if="!searchStore.isSearchLoading && !loading && !error">
+        <template v-if="filteredHouses.length">
+          <div v-if="searchStore.searchQuery" class="houses-view__search-count">
+            <SearchResultsCount :filteredData="filteredHouses" />
+          </div>
+          <HousesList :houses="filteredHouses"/>
+        </template>
+        <div v-else class="houses-view__not-found-wrapper">
+          <NotFound>No results found. <br> Please try another keyword.</NotFound>
+        </div>
+      </template>
+      <LoadingIndicator v-else-if="!error" />
+      <ErrorNotification v-else :error-message="error" />
+    </section>
+  </template>
+
+  <RouterView />
 </template>
 
 <script setup lang="ts">
@@ -49,12 +51,14 @@ const { houses, loading, error } = storeToRefs(housesStore)
 const sortBy = ref(SortBy.Price)
 
 watch(
-  [error, houses],
+  [error, houses, () => route.path],
   () => {
-    router.push({
-      name: 'Houses',
-      query: { sort: error.value ? undefined : SortBy.Price },
-    })
+    if (route.path === '/') {
+      router.push({
+        name: 'Houses',
+        query: { sort: error.value ? undefined : SortBy.Price },
+      })
+    }
   },
   { immediate: true }
 )

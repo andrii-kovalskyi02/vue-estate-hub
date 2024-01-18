@@ -1,7 +1,7 @@
 <template>
   <section className="card">
     <RouterLink
-      :to="{ name: 'house', params: { 'houseId': id }}"
+      :to="{ name: 'House', params: { 'houseId': id }}"
       className="card__link"
     >
       <img

@@ -3,6 +3,7 @@
     class="icon"
     :class="{ [`icon--${type}`]: true, [`icon--${type}-active`]: isActive }"
     :aria-label="`${type} Icon`"
+    role="img"
   />
 </template>
 
