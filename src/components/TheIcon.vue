@@ -63,12 +63,36 @@ withDefaults(defineProps<{
     background-image: url(@/assets/images/icons/ic_size@3x.png);
   }
 
+  &--location {
+    background-image: url(@/assets/images/icons/ic_location@3x.png);
+  }
+
+  &--price {
+    background-image: url(@/assets/images/icons/ic_price@3x.png);
+  }
+
+  &--construction {
+    background-image: url(@/assets/images/icons/ic_construction_date@3x.png);
+  }
+
+  &--garage {
+    background-image: url(@/assets/images/icons/ic_garage@3x.png);
+  }
+
   &--search {
     background-image: url(@/assets/images/icons/ic_search@3x.png);
   }
 
   &--clear {
     background-image: url(@/assets/images/icons/ic_clear@3x.png);
+  }
+
+  &--back {
+    background-image: url(@/assets/images/icons/ic_back_grey@3x.png);
+  }
+
+  &--back-mobile {
+    background-image: url(@/assets/images/icons/ic_back_white@3x.png);
   }
 }
 </style>

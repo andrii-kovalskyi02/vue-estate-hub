@@ -21,7 +21,10 @@ withDefaults(defineProps<{
 
 <style lang="scss" scoped>
 .button {
+  position: relative;
+  z-index: 1;
   @include flexCenter;
+  background-color: unset;
   cursor: pointer;
 
   &--clear {
@@ -61,6 +64,14 @@ withDefaults(defineProps<{
   &--sort-by-size {
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+  }
+
+  &--back {
+    gap: 10px;
+
+    @extend %text-style-back-button-label;
+
+    @include hover(color, $secondary-color);
   }
 }
 </style>

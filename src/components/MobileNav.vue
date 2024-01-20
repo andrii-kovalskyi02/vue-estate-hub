@@ -12,11 +12,11 @@
             query: name === 'Houses' ? $route.query : {}
           }"
           class="nav__link"
-          :aria-current="$route.name === name ? 'page' : null"
+          :aria-current="$route.matched[0]?.name === name ? 'page' : null"
         >
           <TheIcon
             :type="getIconType(name)"
-            :isActive="$route.name === name"
+            :isActive="$route.matched[0]?.name === name"
           />
         </RouterLink>
       </li>

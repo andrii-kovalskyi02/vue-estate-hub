@@ -8,7 +8,7 @@ export const routes = [
     component: HousesView,
     children: [
       {
-        path: 'houses/:houseId',
+        path: 'houses/:houseId/:slug',
         name: 'House',
         component: () => import('@/views/HouseDetailsView.vue')
       },

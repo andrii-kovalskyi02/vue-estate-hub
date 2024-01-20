@@ -21,7 +21,7 @@
               query: name === 'Houses' ? $route.query : {}
             }"
             class="nav__link"
-            :aria-current="$route.name === name ? 'page' : null"
+            :aria-current="$route.matched[0]?.name === name ? 'page' : null"
           >
             {{ name }}
           </RouterLink>

@@ -11,12 +11,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import useWindowWidth from '@/composables/useWindowWidth'
+import useIsMobile from '@/composables/useIsMobile'
 import DesktopNav from './DesktopNav.vue'
 import MobileNav from './MobileNav.vue'
 
 const { clientWidth } = useWindowWidth()
 
-const shouldRenderDesktopNav = computed(() => clientWidth.value >= 768)
+const { isMobile } = useIsMobile()
+
+const shouldRenderDesktopNav = computed(() => !isMobile.value)
 </script>
 
 <style scoped lang="scss">

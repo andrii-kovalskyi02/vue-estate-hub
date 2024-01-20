@@ -17,7 +17,7 @@
         </div>
       </template>
       <LoadingIndicator v-else-if="!error" />
-      <ErrorNotification v-else :error-message="error" />
+      <ErrorNotification v-else :error-message="ErrorMessages.ErrorFetchingData" />
     </section>
   </template>
 
@@ -40,6 +40,7 @@ import TheSearch from '@/components/TheSearch.vue'
 import SearchResultsCount from '@/components/SearchResultsCount.vue'
 import HousesSorter from '@/components/HousesSorter.vue'
 import { SortBy } from '@/types/SortByEnum'
+import { ErrorMessages } from '@/types/ErrorMessagesEnum'
 
 const route = useRoute()
 const router = useRouter()

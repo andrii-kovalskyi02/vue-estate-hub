@@ -1,12 +1,18 @@
 <template>
   <section className="card">
     <RouterLink
-      :to="{ name: 'House', params: { 'houseId': id }}"
+      :to="{
+        name: 'House',
+        params: {
+          houseId: id,
+          slug: addDashes(cardTitle)
+        }
+      }"
       className="card__link"
     >
       <img
         :src="image"
-        :alt="cardTitle"
+        :alt="`${cardTitle} House Image`"
         className="card__img"
       />
       <div class="card__info-wrapper">
@@ -23,19 +29,19 @@
             <div className="card__specs-icon">
               <TheIcon type="bedroom" />
             </div>
-            <p className="card__specs-value">{{ rooms.bedrooms }}</p>
+            <h4 className="card__specs-value">{{ rooms.bedrooms }}</h4>
           </div>
           <div className="card__specs">
             <div className="card__specs-icon">
               <TheIcon type="bathroom" />
             </div>
-            <p className="card__specs-value">{{ rooms.bathrooms }}</p>
+            <h4 className="card__specs-value">{{ rooms.bathrooms }}</h4>
           </div>
           <div className="card__specs">
             <div className="card__specs-icon">
               <TheIcon type="size" />
             </div>
-            <p className="card__specs-value">{{ size }} m2</p>
+            <h4 className="card__specs-value">{{ size }} m2</h4>
           </div>
         </div>
       </div>
@@ -44,12 +50,13 @@
 </template>
 
 <script setup lang="ts">
-import type { House } from '@/types/House';
-import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter';
-import { computed } from 'vue';
-import { RouterLink } from 'vue-router';
-import { formatNumber } from '@/utils/formatNumber';
-import TheIcon from './TheIcon.vue';
+import type { House } from '@/types/House'
+import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
+import { addDashes } from '@/utils/addDashes'
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
+import { formatNumber } from '@/utils/formatNumber'
+import TheIcon from './TheIcon.vue'
 
 const props = defineProps<{
   house: House
