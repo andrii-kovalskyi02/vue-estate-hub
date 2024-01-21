@@ -1,6 +1,12 @@
 <template>
   <template v-if="$route.path === '/'">
     <section class="houses-view">
+      <div class="houses-view__create-house-container">
+        <h1 class="houses-view__title" tabindex="0">Houses</h1>
+        <div class="houses-view__create-new-wrapper">
+          <CreateNewHouseBtn />
+        </div>
+      </div>
       <div v-if="!error && houses.length" class="houses-view__filter-container">
         <TheSearch />
         <HousesSorter />
@@ -8,7 +14,7 @@
       <template v-if="!searchStore.isSearchLoading && !loading && !error">
         <template v-if="filteredHouses.length">
           <div v-if="searchStore.searchQuery" class="houses-view__search-count">
-            <SearchResultsCount :filteredData="filteredHouses" />
+            <SearchResultsCount :filtered-data="filteredHouses" />
           </div>
           <HousesList :houses="filteredHouses"/>
         </template>
@@ -41,6 +47,7 @@ import SearchResultsCount from '@/components/SearchResultsCount.vue'
 import HousesSorter from '@/components/HousesSorter.vue'
 import { SortBy } from '@/types/SortByEnum'
 import { ErrorMessages } from '@/types/ErrorMessagesEnum'
+import CreateNewHouseBtn from '@/components/CreateNewHouseBtn.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -79,6 +86,32 @@ onMounted(() => housesStore.fetchData())
 
 <style scoped lang="scss">
 .houses-view {
+  &__create-house-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
+    @include onTablet {
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
+  }
+
+  &__create-new-wrapper {
+    position: absolute;
+    right: 0;
+
+    @include onTablet {
+      position: static;
+    }
+  }
+
+  &__title {
+    @extend %text-style-header1;
+  }
+
   &__filter-container {
     display: flex;
     flex-direction: column;

@@ -1,11 +1,10 @@
 <template>
   <CustomButton
-    type="button"
-    customClass="back"
+    custom-class="back"
     @click="$router.back"
+    :aria-label="label || 'Go Back to Previous Page'"
   >
-    <TheIcon v-if="isMobile" type="back-mobile" />
-    <TheIcon v-else type="back" />
+    <TheIcon :type="isMobile ? 'back-mobile' : 'back'" />
     {{ label }}
   </CustomButton>
 </template>

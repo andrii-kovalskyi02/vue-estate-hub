@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     class="button"
     :class="{
       [`button--${customClass}`]: true,
@@ -72,6 +73,20 @@ withDefaults(defineProps<{
     @extend %text-style-back-button-label;
 
     @include hover(color, $secondary-color);
+  }
+
+  &--create-new {
+    gap: 15px;
+    width: 220px;
+    height: 50px;
+    border-radius: 8px;
+    background-color: $primary-color;
+
+    @extend %text-style-buttons-and-tabs;
+    text-transform: uppercase;
+    color: $background-color-2;
+
+    @include hover(background-color, $primary-color-hover);
   }
 }
 </style>

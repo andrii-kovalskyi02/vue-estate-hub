@@ -1,15 +1,14 @@
 <template>
   <header class="header" role="banner" aria-label="Site header">
     <div class="header__content">
-      <DesktopNav v-if="shouldRenderDesktopNav" />
-      <MobileNav v-else/>
+      <MobileNav v-if="isMobile"/>
+      <DesktopNav v-else />
     </div>
   </header>
   <h1>{{ clientWidth }}</h1>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import useWindowWidth from '@/composables/useWindowWidth'
 import useIsMobile from '@/composables/useIsMobile'
 import DesktopNav from './DesktopNav.vue'
@@ -18,8 +17,6 @@ import MobileNav from './MobileNav.vue'
 const { clientWidth } = useWindowWidth()
 
 const { isMobile } = useIsMobile()
-
-const shouldRenderDesktopNav = computed(() => !isMobile.value)
 </script>
 
 <style scoped lang="scss">
@@ -33,6 +30,7 @@ const shouldRenderDesktopNav = computed(() => !isMobile.value)
 
   @include onTablet {
     position: initial;
+    margin-bottom: 55px;
   }
 
   &__content {

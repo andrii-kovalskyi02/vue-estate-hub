@@ -19,8 +19,8 @@ withDefaults(defineProps<{
 <style scoped lang="scss">
 .icon {
   display: block;
-  width: 15px;
-  height: 15px;
+  width: 18px;
+  height: 18px;
 
   background-size: contain;
   background-position: center;
@@ -93,6 +93,30 @@ withDefaults(defineProps<{
 
   &--back-mobile {
     background-image: url(@/assets/images/icons/ic_back_white@3x.png);
+  }
+
+  &--edit {
+    background-image: url(@/assets/images/icons/ic_edit@3x.png);
+  }
+
+  &--edit-mobile {
+    background-image: url(@/assets/images/icons/ic_edit_white@3x.png);
+  }
+
+  &--delete {
+    background-image: url(@/assets/images/icons/ic_delete@3x.png);
+  }
+
+  &--delete-mobile {
+    background-image: url(@/assets/images/icons/ic_delete_white@3x.png);
+  }
+
+  &--create-new {
+    background-image: url(@/assets/images/icons/ic_plus_white@3x.png);
+  }
+
+  &--create-new-mobile {
+    background-image: url(@/assets/images/icons/ic_plus_grey@3x.png);
   }
 }
 </style>

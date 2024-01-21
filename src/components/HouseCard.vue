@@ -46,23 +46,29 @@
         </div>
       </div>
     </RouterLink>
+
+    <div class="card__actions-wrapper">
+      <HouseActions />
+    </div>
+    <!-- <HouseActions v-if="madeByMe" /> -->
   </section>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import type { House } from '@/types/House'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { addDashes } from '@/utils/addDashes'
-import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
 import { formatNumber } from '@/utils/formatNumber'
 import TheIcon from './TheIcon.vue'
+import HouseActions from './HouseActions.vue'
 
 const props = defineProps<{
   house: House
 }>()
 
-const { id, image, price, rooms, size, location } = props.house
+const { id, image, price, rooms, size, location, madeByMe } = props.house
 
 const cardTitle = computed(() =>
   `${capitalizeFirstLetter(location.street)} ${location.houseNumber}`)
@@ -72,6 +78,7 @@ const cardAddress = computed(() => `${location.zip} ${location.city}`)
 
 <style scoped lang="scss">
 .card {
+  display: flex;
   padding: 15px;
   border-radius: 10px;
   background-color: $background-color-2;
@@ -86,11 +93,20 @@ const cardAddress = computed(() => `${location.zip} ${location.city}`)
 
   &__link {
     display: flex;
+    flex: 1;
+  }
+
+  &__actions-wrapper {
+    padding: 10px 10px 0 0;
+
+    @include onTablet {
+      padding-top: 15px 15px 0 0;
+    }
   }
 
   &__img {
     display: block;
-    margin-right: 20px;
+    margin-right: 15px;
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -98,6 +114,7 @@ const cardAddress = computed(() => `${location.zip} ${location.city}`)
     border-radius: 10px;
 
     @include onTablet {
+      margin-right: 20px;
       width: 170px;
       height: 170px;
     }

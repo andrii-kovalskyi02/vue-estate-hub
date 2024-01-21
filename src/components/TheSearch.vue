@@ -17,7 +17,7 @@
     <CustomButton
       v-if="query"
       type="reset"
-      customClass="clear"
+      custom-class="clear"
       aria-label="Clear search query"
       @click="resetSearchInput"
     >

@@ -2,9 +2,8 @@
   <div class="sort-container" role="group" aria-label="Sort Houses">
     <template v-for="{ value, label } in sortByValues" :key="value">
       <CustomButton
-        type="button"
-        :customClass="`sort-by-${value}`"
-        :isActive="$route.query.sort === value"
+        :custom-class="`sort-by-${value}`"
+        :is-active="$route.query.sort === value"
         :aria-label="`Sort by ${label}`"
         @click="handleClick(value)"
       >

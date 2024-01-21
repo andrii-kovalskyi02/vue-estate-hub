@@ -8,7 +8,10 @@
       />
     </div>
     <div class="house__info-container">
-      <h1 className="house__title">{{ houseTitle }}</h1>
+      <div class="house__base-line">
+        <h1 className="house__title">{{ houseTitle }}</h1>
+        <HouseActions v-if="!isMobile" />
+      </div>
 
       <div className="house__specs-container">
         <div className="house__specs">
@@ -69,11 +72,15 @@ import { computed } from 'vue'
 import type { House } from '@/types/House'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { formatNumber } from '@/utils/formatNumber'
-import TheIcon from './TheIcon.vue';
+import TheIcon from './TheIcon.vue'
+import HouseActions from './HouseActions.vue'
 
-const props = defineProps<{
-  house: House
-}>()
+const props = withDefaults(defineProps<{
+    house: House
+    isMobile?: Boolean
+  }>(), {
+  isMobile: () => false
+})
 
 const {
   id,
@@ -131,6 +138,12 @@ const houseAddress = computed(() => `${location.zip} ${location.city}`)
       position: static;
       border-radius: unset;
     }
+  }
+
+  &__base-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
   }
 
   &__title {
