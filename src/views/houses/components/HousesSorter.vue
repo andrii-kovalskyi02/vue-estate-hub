@@ -15,15 +15,17 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { SortBy, sortByValues } from '@/types/SortByEnum'
-import CustomButton from './CustomButton.vue'
+import { housesRouteNames } from '@/views/houses/houses.routes'
+import { sortByValues } from '@/views/houses/houses.constants'
+import type { SortBy } from '@/views/houses/houses.enums'
+import CustomButton from '@/components/CustomButton.vue'
 
 const router = useRouter()
 const route = useRoute()
 
 const handleClick = (value: SortBy) => {
   router.push({
-    name: 'Houses',
+    name: housesRouteNames.houses,
     query: { ...route.query, sort: value },
   })
 }

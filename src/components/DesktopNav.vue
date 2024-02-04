@@ -1,12 +1,15 @@
 <template>
   <nav class="nav">
     <ul className="nav__list">
-        <li>
-          <RouterLink :to="{ name: 'Houses', query: $route.query }">
+        <li class="nav__item">
+          <RouterLink
+            :to="{ name: housesRouteNames.houses }"
+            class="nav__logo-link"
+          >
             <img
               src="@/assets/images/img_logo_dtt@3x.png"
               alt="DTT Logo"
-              class="nav__logo"
+              class="nav__logo-img"
             >
           </RouterLink>
         </li>
@@ -16,10 +19,7 @@
           class="nav__item"
         >
           <RouterLink
-            :to="{
-              name,
-              query: name === 'Houses' ? $route.query : {}
-            }"
+            :to="{ name }"
             class="nav__link"
             :aria-current="$route.matched[0]?.name === name ? 'page' : null"
           >
@@ -33,11 +33,17 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { routes } from '@/router'
+import { housesRouteNames } from '@/views/houses/houses.routes'
 </script>
 
 <style scoped lang="scss">
 .nav {
-  &__logo {
+  &__logo-link {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo-img {
     width: 120px;
   }
 
@@ -45,7 +51,7 @@ import { routes } from '@/router'
     display: flex;
     align-items: center;
     gap: 50px;
-    padding-left: 25px;
+    padding: 15px 25px;
 
     list-style-type: none;
   }

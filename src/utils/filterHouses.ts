@@ -1,4 +1,4 @@
-import type { House } from "@/types/House"
+import type { House } from '@/views/houses/houses.types'
 
 export function filterHouses(
   houses: House[] = [],

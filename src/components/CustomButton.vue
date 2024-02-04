@@ -4,7 +4,8 @@
     class="button"
     :class="{
       [`button--${customClass}`]: true,
-      [`button--${customClass}-active`]: isActive
+      [`button--${customClass}--active`]: isActive,
+      [`button--${customClass}--error`]: hasError
     }"
   >
     <slot />
@@ -13,14 +14,16 @@
 
 <script setup lang="ts">
 withDefaults(defineProps<{
-    customClass: String,
-    isActive?: Boolean
+    customClass: string,
+    isActive?: boolean,
+    hasError?: boolean
   }>(), {
-  isActive: () => false
+  isActive: () => false,
+  hasError: () => false
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .button {
   position: relative;
   z-index: 1;
@@ -50,7 +53,7 @@ withDefaults(defineProps<{
       height: 46px;
     }
 
-    &-active {
+    &--active {
       background-color: $primary-color;
 
       @include hover(background-color, $primary-color-hover);
@@ -75,7 +78,8 @@ withDefaults(defineProps<{
     @include hover(color, $secondary-color);
   }
 
-  &--create-new {
+  &--create-new,
+  &--post {
     gap: 15px;
     width: 220px;
     height: 50px;
@@ -87,6 +91,43 @@ withDefaults(defineProps<{
     color: $background-color-2;
 
     @include hover(background-color, $primary-color-hover);
+  }
+
+  &--clear-img {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+  }
+
+  &--select {
+    justify-content: space-between;
+    width: 100%;
+    height: 55px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+    background-color: $background-color-2;
+
+    @extend %text-style-input-field;
+    color: $tertiary-color-2;
+
+    &--chosen {
+      color: $secondary-color;
+    }
+
+    &--active {
+      #arrow-down {
+        fill: $text-color-primary;
+      }
+    }
+
+    &--error {
+      border-color: $primary-color;
+      color: $primary-color;
+    }
+
+    transition: fill 0.3s;
   }
 }
 </style>

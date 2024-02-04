@@ -27,9 +27,8 @@ import TheHeader from '@/components/TheHeader.vue'
     padding: 25px 25px calc($mobileHeaderHeight + 25px);
     min-width: 320px;
     max-width: 1320px;
-
+ 
     @include onTablet {
-      /* padding: 0 25px 25px; */
       padding-top: 0;
     }
   }

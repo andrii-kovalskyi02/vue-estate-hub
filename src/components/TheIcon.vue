@@ -87,6 +87,12 @@ withDefaults(defineProps<{
     background-image: url(@/assets/images/icons/ic_clear@3x.png);
   }
 
+  &--clear-white {
+    width: 35px;
+    height: 35px;
+    background-image: url(@/assets/images/icons/ic_clear_white@3x.png);
+  }
+
   &--back {
     background-image: url(@/assets/images/icons/ic_back_grey@3x.png);
   }
@@ -117,6 +123,12 @@ withDefaults(defineProps<{
 
   &--create-new-mobile {
     background-image: url(@/assets/images/icons/ic_plus_grey@3x.png);
+  }
+
+  &--upload {
+    width: 30px;
+    height: 30px;
+    background-image: url(@/assets/images/icons/ic_upload@3x.png);
   }
 }
 </style>

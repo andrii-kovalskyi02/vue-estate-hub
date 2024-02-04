@@ -5,7 +5,7 @@
       <DesktopNav v-else />
     </div>
   </header>
-  <h1>{{ clientWidth }}</h1>
+  <!-- <h1>{{ clientWidth }}</h1> -->
 </template>
 
 <script setup lang="ts">
@@ -29,7 +29,7 @@ const { isMobile } = useIsMobile()
   box-shadow: $primaryShadowBox;
 
   @include onTablet {
-    position: initial;
+    position: relative;
     margin-bottom: 55px;
   }
 
@@ -41,7 +41,7 @@ const { isMobile } = useIsMobile()
     height: $mobileHeaderHeight;
 
     @include onTablet {
-      height: 75px;
+      height: unset;
     }
   }
 }

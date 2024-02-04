@@ -7,16 +7,13 @@
         class="nav__item"
       >
         <RouterLink
-          :to="{
-            name,
-            query: name === 'Houses' ? $route.query : {}
-          }"
+          :to="{ name }"
           class="nav__link"
           :aria-current="$route.matched[0]?.name === name ? 'page' : null"
         >
           <TheIcon
-            :type="getIconType(name)"
-            :isActive="$route.matched[0]?.name === name"
+            :type="getIconType(name as string)"
+            :is-active="$route.matched[0]?.name === name"
           />
         </RouterLink>
       </li>
@@ -25,12 +22,13 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
 import { routes } from '@/router'
+import { RouterLink } from 'vue-router'
+import { housesRouteNames } from '@/views/houses/houses.routes'
 import TheIcon from './TheIcon.vue'
 
 const getIconType = (name: string) => {
-  return name === 'Houses' ? 'house' : name.toLowerCase()
+  return name === housesRouteNames.houses ? 'house' : name.toLowerCase()
 }
 </script>
 

@@ -1,24 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HousesView from '@/views/HousesView.vue'
+import { housesRouteNames, housesRoutes } from '@/views/houses/houses.routes'
+import { aboutRoutes } from '@/views/about/about.routes'
+import { SortBy } from '@/views/houses/houses.enums'
 
 export const routes = [
-  {
-    path: '/',
-    name: 'Houses',
-    component: HousesView,
-    children: [
-      {
-        path: 'houses/:houseId/:slug',
-        name: 'House',
-        component: () => import('@/views/HouseDetailsView.vue')
-      },
-    ]
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/views/AboutView.vue'),
-  }
+  ...housesRoutes,
+  ...aboutRoutes
 ]
 
 const router = createRouter({
@@ -26,6 +13,14 @@ const router = createRouter({
   routes,
   linkActiveClass: 'active-link',
   linkExactActiveClass: 'exact-active-link'
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.query.sort && to.name === housesRouteNames.houses) {
+    next({ ...to, query: { sort: SortBy.Price } })
+  } else {
+    next()
+  }
 })
 
 export default router

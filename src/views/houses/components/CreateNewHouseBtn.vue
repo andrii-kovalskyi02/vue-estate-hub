@@ -2,6 +2,7 @@
   <CustomButton
     :custom-class="isMobile ? 'create-new-mobile' : 'create-new'"
     aria-label="Create New House"
+    @click="$router.push({ name: 'NewListing' })"
   >
     <TheIcon v-if="isMobile" type="create-new-mobile" />
     <template v-else>
@@ -13,12 +14,8 @@
 
 <script setup lang="ts">
 import useIsMobile from '@/composables/useIsMobile'
-import CustomButton from './CustomButton.vue'
-import TheIcon from './TheIcon.vue'
+import CustomButton from '@/components/CustomButton.vue'
+import TheIcon from '@/components/TheIcon.vue'
 
 const { isMobile } = useIsMobile()
-
 </script>
-
-<style scoped lang="scss">
-</style>

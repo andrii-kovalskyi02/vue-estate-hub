@@ -2,7 +2,7 @@
   <section className="card">
     <RouterLink
       :to="{
-        name: 'House',
+        name: housesRouteNames.house,
         params: {
           houseId: id,
           slug: addDashes(cardTitle)
@@ -47,21 +47,22 @@
       </div>
     </RouterLink>
 
-    <div class="card__actions-wrapper">
+    <div  v-if="madeByMe" class="card__actions-wrapper">
       <HouseActions />
     </div>
-    <!-- <HouseActions v-if="madeByMe" /> -->
   </section>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import type { House } from '@/types/House'
+import { housesRouteNames } from '@/views/houses/houses.routes'
+import type { House } from '@/views/houses/houses.types'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
+import { makeAddressTitle } from '@/utils/makeAddressTitle'
 import { addDashes } from '@/utils/addDashes'
 import { formatNumber } from '@/utils/formatNumber'
-import TheIcon from './TheIcon.vue'
+import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
 
 const props = defineProps<{
@@ -70,8 +71,13 @@ const props = defineProps<{
 
 const { id, image, price, rooms, size, location, madeByMe } = props.house
 
-const cardTitle = computed(() =>
-  `${capitalizeFirstLetter(location.street)} ${location.houseNumber}`)
+const cardTitle = computed(() => {
+  return makeAddressTitle(
+  capitalizeFirstLetter(location.street),
+    location.houseNumber,
+    location.houseNumberAddition
+  )
+})
 
 const cardAddress = computed(() => `${location.zip} ${location.city}`)
 </script>

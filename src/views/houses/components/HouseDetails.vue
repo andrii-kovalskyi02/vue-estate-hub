@@ -69,11 +69,12 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { House } from '@/types/House'
+import type { House } from '@/views/houses/houses.types'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { formatNumber } from '@/utils/formatNumber'
-import TheIcon from './TheIcon.vue'
+import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
+import { makeAddressTitle } from '@/utils/makeAddressTitle'
 
 const props = withDefaults(defineProps<{
     house: House
@@ -92,11 +93,15 @@ const {
   location,
   constructionYear,
   hasGarage,
-  madeByMe
 } = props.house
 
-const houseTitle = computed(() =>
-  `${capitalizeFirstLetter(location.street)} ${location.houseNumber}`)
+const houseTitle = computed(() => {
+  return makeAddressTitle(
+    capitalizeFirstLetter(location.street),
+    location.houseNumber,
+    location.houseNumberAddition
+  )
+})
 
 const houseAddress = computed(() => `${location.zip} ${location.city}`)
 </script>

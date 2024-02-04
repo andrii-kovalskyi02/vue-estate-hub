@@ -16,8 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import CustomButton from './CustomButton.vue';
-import TheIcon from './TheIcon.vue'
+import CustomButton from '@/components/CustomButton.vue'
+import TheIcon from '@/components/TheIcon.vue'
 
 withDefaults(defineProps<{
     isMobile?: Boolean

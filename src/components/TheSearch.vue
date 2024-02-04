@@ -10,6 +10,7 @@
     <input
       type="text"
       v-model.trim="query"
+      id="search"
       class="search__input"
       placeholder="Search for a house"
     />
@@ -28,13 +29,14 @@
 
 <script setup lang="ts">
 import { onUnmounted, ref, watch, watchEffect } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { housesRouteNames } from '@/views/houses/houses.routes'
+import { useHousesStore } from '@/stores/houses'
+import debounce from 'lodash.debounce'
 import TheIcon from './TheIcon.vue'
-import { useSearchStore } from '@/stores/search'
-import { useRoute, useRouter } from 'vue-router';
-import debounce from 'lodash.debounce';
-import CustomButton from './CustomButton.vue';
+import CustomButton from './CustomButton.vue'
 
-const searchStore = useSearchStore()
+const housesStore = useHousesStore()
 const router = useRouter()
 const route = useRoute()
 const query = ref('')
@@ -46,16 +48,16 @@ const resetSearchInput = () => {
 }
 
 const applySearchQuery = debounce(
-  (query: string) => searchStore.appliedSearchQuery = query,
+  (query: string) => housesStore.appliedSearchQuery = query,
   debounceDelay.value,
 )
 
 watchEffect(() => {
-  searchStore.searchQuery = query.value
+  housesStore.searchQuery = query.value
   applySearchQuery(query.value)
 
   router.push({
-    name: 'Houses',
+    name: housesRouteNames.houses,
     query: {
       ...route.query,
       query: query.value ? query.value : undefined
@@ -67,13 +69,13 @@ watch(query, (newSearchQuery) => {
   if (newSearchQuery) {
     clearTimeout(loadingTimeout.value)
 
-    searchStore.isSearchLoading = true
+    housesStore.isSearchLoading = true
 
     loadingTimeout.value = setTimeout(() => {
-      searchStore.isSearchLoading = false
+      housesStore.isSearchLoading = false
     }, debounceDelay.value + 100)
   } else {
-    searchStore.isSearchLoading = false
+    housesStore.isSearchLoading = false
   }
 })
 

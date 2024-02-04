@@ -5,7 +5,10 @@
         <BackButton v-if="isMobile" :is-mobile="isMobile" />
         <BackButton v-else label="Back to overview" />
       </div>
-      <HouseActions v-if="isMobile && !error" :is-mobile="isMobile" />
+      <HouseActions
+        v-if="isMobile && !error && house?.madeByMe"
+        :is-mobile="isMobile"
+      />
     </div>
 
     <template v-if="error">
@@ -22,11 +25,11 @@ import { useRoute } from 'vue-router'
 import ErrorNotification from '@/components/ErrorNotification.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import useHouseCrud from '@/composables/useHouseCrud'
-import { ErrorMessages } from '@/types/ErrorMessagesEnum'
-import HouseDetails from '@/components/HouseDetails.vue'
+import { ErrorMessages } from './houses.constants'
+import HouseDetails from './components/HouseDetails.vue'
 import BackButton from '@/components/BackButton.vue'
 import useIsMobile from '@/composables/useIsMobile'
-import HouseActions from '@/components/HouseActions.vue'
+import HouseActions from './components/HouseActions.vue'
 
 const route = useRoute()
 

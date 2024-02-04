@@ -1,8 +1,10 @@
 <template>
-  <template v-if="$route.path === '/'">
+  <template v-if="$route.name === housesRouteNames.houses">
     <section class="houses-view">
       <div class="houses-view__create-house-container">
-        <h1 class="houses-view__title" tabindex="0">Houses</h1>
+        <h1 class="houses-view__title" tabindex="0">
+          {{ housesRouteNames.houses }}
+        </h1>
         <div class="houses-view__create-new-wrapper">
           <CreateNewHouseBtn />
         </div>
@@ -11,9 +13,9 @@
         <TheSearch />
         <HousesSorter />
       </div>
-      <template v-if="!searchStore.isSearchLoading && !loading && !error">
+      <template v-if="!housesStore.isSearchLoading && !loading && !error">
         <template v-if="filteredHouses.length">
-          <div v-if="searchStore.searchQuery" class="houses-view__search-count">
+          <div v-if="housesStore.searchQuery" class="houses-view__search-count">
             <SearchResultsCount :filtered-data="filteredHouses" />
           </div>
           <HousesList :houses="filteredHouses"/>
@@ -23,7 +25,10 @@
         </div>
       </template>
       <LoadingIndicator v-else-if="!error" />
-      <ErrorNotification v-else :error-message="ErrorMessages.ErrorFetchingData" />
+      <ErrorNotification
+        v-else
+        :error-message="ErrorMessages.ErrorFetchingData"
+      />
     </section>
   </template>
 
@@ -31,54 +36,41 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, watchEffect } from 'vue'
+import { computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useRoute, useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { useHousesStore } from '@/stores/houses'
-import { useSearchStore } from '@/stores/search'
 import { filterHouses } from '@/utils/filterHouses'
 import { sortHouses } from '@/utils/sortHouses'
 import ErrorNotification from '@/components/ErrorNotification.vue'
-import HousesList from '@/components/HousesList.vue'
+import HousesList from './components/HousesList.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import NotFound from '@/components/NotFound.vue'
 import TheSearch from '@/components/TheSearch.vue'
 import SearchResultsCount from '@/components/SearchResultsCount.vue'
-import HousesSorter from '@/components/HousesSorter.vue'
-import { SortBy } from '@/types/SortByEnum'
-import { ErrorMessages } from '@/types/ErrorMessagesEnum'
-import CreateNewHouseBtn from '@/components/CreateNewHouseBtn.vue'
+import HousesSorter from './components/HousesSorter.vue'
+import type { SortBy } from './houses.enums'
+import CreateNewHouseBtn from './components/CreateNewHouseBtn.vue'
+import { housesRouteNames } from './houses.routes'
+import { ErrorMessages } from './houses.constants'
 
 const route = useRoute()
-const router = useRouter()
 
 const housesStore = useHousesStore()
-const searchStore = useSearchStore()
 const { houses, loading, error } = storeToRefs(housesStore)
 
-const sortBy = ref(SortBy.Price)
-
-watch(
-  [error, houses, () => route.path],
-  () => {
-    if (route.path === '/') {
-      router.push({
-        name: 'Houses',
-        query: { sort: error.value ? undefined : SortBy.Price },
-      })
-    }
-  },
-  { immediate: true }
-)
-
-watchEffect(() => sortBy.value = route.query.sort as SortBy)
-
 const sortedHouses = computed(() => {
-  return sortHouses(houses.value, sortBy.value)
+  return sortHouses(houses.value, route.query.sort as SortBy)
 })
 
 const filteredHouses = computed(() => {
-  return filterHouses(sortedHouses.value, searchStore.appliedSearchQuery)
+  return filterHouses(sortedHouses.value, housesStore.appliedSearchQuery)
+})
+
+onBeforeRouteUpdate((to, from) => {
+  if (from.matched.length > 1 && to.name === housesRouteNames.houses) {
+    housesStore.fetchData()
+  }
 })
 
 onMounted(() => housesStore.fetchData())

@@ -1,5 +1,5 @@
-import type { House } from "@/types/House"
-import { SortBy } from '@/types/SortByEnum'
+import type { House } from "@/views/houses/houses.types"
+import { SortBy } from "@/views/houses/houses.enums"
 
 export function sortHouses(
   houses: House[] = [],

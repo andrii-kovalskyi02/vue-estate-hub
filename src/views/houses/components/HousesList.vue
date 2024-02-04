@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import type { House } from '@/types/House';
-import HouseCard from './HouseCard.vue';
+import type { House } from '@/views/houses/houses.types'
+import HouseCard from './HouseCard.vue'
 
 defineProps<{
   houses: House[]
