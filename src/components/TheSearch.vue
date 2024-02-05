@@ -102,7 +102,7 @@ onUnmounted(() => clearTimeout(loadingTimeout.value))
     width: 100%;
     height: 35px;
     padding-left: 50px;
-    border-radius: 5px;
+    border-radius: 7px;
     border: none;
     outline: none;
 

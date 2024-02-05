@@ -108,17 +108,8 @@ const houseAddress = computed(() => `${location.zip} ${location.city}`)
 
 <style scoped lang="scss">
 .house {
+  background-color: $background-color-2;
   box-shadow: $primaryShadowBox;
-
-  &__img-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    @include onTablet {
-      position: static;
-    }
-  }
 
   &__img {
     display: block;
@@ -128,20 +119,18 @@ const houseAddress = computed(() => `${location.zip} ${location.city}`)
   }
 
   &__info-container {
-    position: absolute;
-    top: 220px;
-    left: 0;
-    z-index: 1;
-
-    padding: 25px;
-    width: 100%;
+    padding: $paddingDefault;
+    padding-bottom: 0;
     border-top-right-radius: 28px;
     border-top-left-radius: 28px;
     background-color: $background-color-2;
 
+    transform: translateY(-$paddingDefault);
+
     @include onTablet {
-      position: static;
+      padding-bottom: $paddingDefault;
       border-radius: unset;
+      transform: unset;
     }
   }
 

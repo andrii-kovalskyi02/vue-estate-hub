@@ -7,7 +7,7 @@
             class="nav__logo-link"
           >
             <img
-              src="@/assets/images/img_logo_dtt@3x.png"
+              src="/images/img_logo_dtt@3x.png"
               alt="DTT Logo"
               class="nav__logo-img"
             >
@@ -51,7 +51,7 @@ import { housesRouteNames } from '@/views/houses/houses.routes'
     display: flex;
     align-items: center;
     gap: 50px;
-    padding: 15px 25px;
+    padding: 15px $paddingDefault;
 
     list-style-type: none;
   }

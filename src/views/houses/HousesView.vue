@@ -1,34 +1,36 @@
 <template>
   <template v-if="$route.name === housesRouteNames.houses">
     <section class="houses-view">
-      <div class="houses-view__create-house-container">
-        <h1 class="houses-view__title" tabindex="0">
-          {{ housesRouteNames.houses }}
-        </h1>
-        <div class="houses-view__create-new-wrapper">
-          <CreateNewHouseBtn />
-        </div>
-      </div>
-      <div v-if="!error && houses.length" class="houses-view__filter-container">
-        <TheSearch />
-        <HousesSorter />
-      </div>
-      <template v-if="!housesStore.isSearchLoading && !loading && !error">
-        <template v-if="filteredHouses.length">
-          <div v-if="housesStore.searchQuery" class="houses-view__search-count">
-            <SearchResultsCount :filtered-data="filteredHouses" />
+      <TheContainer>
+        <div class="houses-view__create-house-container">
+          <h1 class="houses-view__title" tabindex="0">
+            {{ housesRouteNames.houses }}
+          </h1>
+          <div class="houses-view__create-new-wrapper">
+            <CreateNewHouseBtn />
           </div>
-          <HousesList :houses="filteredHouses"/>
-        </template>
-        <div v-else class="houses-view__not-found-wrapper">
-          <NotFound>No results found. <br> Please try another keyword.</NotFound>
         </div>
-      </template>
-      <LoadingIndicator v-else-if="!error" />
-      <ErrorNotification
-        v-else
-        :error-message="ErrorMessages.ErrorFetchingData"
-      />
+        <div v-if="!error && houses.length" class="houses-view__filter-container">
+          <TheSearch />
+          <HousesSorter />
+        </div>
+        <template v-if="!housesStore.isSearchLoading && !loading && !error">
+          <template v-if="filteredHouses.length">
+            <div v-if="housesStore.searchQuery" class="houses-view__search-count">
+              <SearchResultsCount :filtered-data="filteredHouses" />
+            </div>
+            <HousesList :houses="filteredHouses"/>
+          </template>
+          <div v-else class="houses-view__not-found-wrapper">
+            <NotFound>No results found. <br> Please try another keyword.</NotFound>
+          </div>
+        </template>
+        <LoadingIndicator v-else-if="!error" />
+        <ErrorNotification
+          v-else
+          :error-message="ErrorMessages.ErrorFetchingData"
+        />
+      </TheContainer>
     </section>
   </template>
 
@@ -40,6 +42,7 @@ import { computed, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { useHousesStore } from '@/stores/houses'
+import TheContainer from '@/components/TheContainer.vue'
 import { filterHouses } from '@/utils/filterHouses'
 import { sortHouses } from '@/utils/sortHouses'
 import ErrorNotification from '@/components/ErrorNotification.vue'

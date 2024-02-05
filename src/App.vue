@@ -21,16 +21,5 @@ import TheHeader from '@/components/TheHeader.vue'
   min-height: 100vh;
   background-color: $background-color-1;
   color: $text-color-primary;
-  
-  &__main {
-    margin: 0 auto;
-    padding: 25px 25px calc($mobileHeaderHeight + 25px);
-    min-width: 320px;
-    max-width: 1320px;
- 
-    @include onTablet {
-      padding-top: 0;
-    }
-  }
 }
 </style>

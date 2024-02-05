@@ -5,16 +5,12 @@
       <DesktopNav v-else />
     </div>
   </header>
-  <!-- <h1>{{ clientWidth }}</h1> -->
 </template>
 
 <script setup lang="ts">
-import useWindowWidth from '@/composables/useWindowWidth'
 import useIsMobile from '@/composables/useIsMobile'
 import DesktopNav from './DesktopNav.vue'
 import MobileNav from './MobileNav.vue'
-
-const { clientWidth } = useWindowWidth()
 
 const { isMobile } = useIsMobile()
 </script>
@@ -29,8 +25,7 @@ const { isMobile } = useIsMobile()
   box-shadow: $primaryShadowBox;
 
   @include onTablet {
-    position: relative;
-    margin-bottom: 55px;
+    position: initial;
   }
 
   &__content {

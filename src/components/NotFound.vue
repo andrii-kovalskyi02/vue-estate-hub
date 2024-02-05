@@ -2,7 +2,7 @@
   <div className="not-found" tabindex="0">
     <div className="not-found__container">
       <img
-        src="@/assets/images/img_empty_houses@3x.png"
+        src="/images/img_empty_houses@3x.png"
         alt="Not Found Image"
         className="not-found__img"
       />
