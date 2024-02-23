@@ -1,11 +1,7 @@
 <template>
   <div className="not-found" tabindex="0">
     <div className="not-found__container">
-      <img
-        src="/images/img_empty_houses@3x.png"
-        alt="Not Found Image"
-        className="not-found__img"
-      />
+      <img src="/images/img_empty_houses@3x.png" alt="Not Found Image" className="not-found__img" />
 
       <h3 className="not-found__title">
         <slot />
@@ -20,6 +16,8 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    animation: $initialAnimation;
 
     @include onTablet {
       gap: 50px;

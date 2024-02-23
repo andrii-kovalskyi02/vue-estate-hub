@@ -1,11 +1,7 @@
 <template>
   <nav class="nav">
     <ul className="nav__list">
-      <li
-        v-for="{ name } in routes.slice(0, 2)"
-        :key="name"
-        class="nav__item"
-      >
+      <li v-for="{ name } in routes.slice(0, 2)" :key="name" class="nav__item">
         <RouterLink
           :to="{ name }"
           class="nav__link"

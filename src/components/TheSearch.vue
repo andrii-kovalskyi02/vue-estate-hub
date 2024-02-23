@@ -1,10 +1,7 @@
 <template>
-  <form
-    class="search"
-    @submit.prevent
-  >
+  <form class="search" @submit.prevent>
     <div class="search__search-icon">
-      <TheIcon type="search"/>
+      <TheIcon type="search" />
     </div>
 
     <input
@@ -22,7 +19,7 @@
       aria-label="Clear search query"
       @click="resetSearchInput"
     >
-      <TheIcon type="clear"/>
+      <TheIcon type="clear" />
     </CustomButton>
   </form>
 </template>
@@ -48,8 +45,8 @@ const resetSearchInput = () => {
 }
 
 const applySearchQuery = debounce(
-  (query: string) => housesStore.appliedSearchQuery = query,
-  debounceDelay.value,
+  (query: string) => (housesStore.appliedSearchQuery = query),
+  debounceDelay.value
 )
 
 watchEffect(() => {
@@ -61,7 +58,7 @@ watchEffect(() => {
     query: {
       ...route.query,
       query: query.value ? query.value : undefined
-    },
+    }
   })
 })
 

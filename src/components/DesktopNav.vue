@@ -10,7 +10,7 @@
               src="/images/img_logo_dtt@3x.png"
               alt="DTT Logo"
               class="nav__logo-img"
-            >
+            />
           </RouterLink>
         </li>
         <li

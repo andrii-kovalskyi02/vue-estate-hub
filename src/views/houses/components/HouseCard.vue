@@ -10,17 +10,11 @@
       }"
       className="card__link"
     >
-      <img
-        :src="image"
-        :alt="`${cardTitle} House Image`"
-        className="card__img"
-      />
+      <img :src="image" :alt="`${cardTitle} House Image`" className="card__img" />
       <div class="card__info-wrapper">
         <div class="card__main-info-wrapper">
           <h2 className="card__title">{{ cardTitle }}</h2>
-          <h3 className="card__price">
-            &euro; {{ formatNumber(price) }}
-          </h3>
+          <h3 className="card__price">&euro; {{ formatNumber(price) }}</h3>
           <h3 className="card__address">{{ cardAddress }}</h3>
         </div>
 
@@ -47,8 +41,8 @@
       </div>
     </RouterLink>
 
-    <div  v-if="madeByMe" class="card__actions-wrapper">
-      <HouseActions />
+    <div v-if="madeByMe" class="card__actions-wrapper">
+      <HouseActions :listingId="id" />
     </div>
   </section>
 </template>
@@ -73,7 +67,7 @@ const { id, image, price, rooms, size, location, madeByMe } = props.house
 
 const cardTitle = computed(() => {
   return makeAddressTitle(
-  capitalizeFirstLetter(location.street),
+    capitalizeFirstLetter(location.street),
     location.houseNumber,
     location.houseNumberAddition
   )

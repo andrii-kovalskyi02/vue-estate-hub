@@ -1,4 +1,4 @@
-import type { ErrorMessages } from "./houses.constants"
+import type { ErrorMessages } from './houses.constants'
 
 interface House {
   id: number;
@@ -23,6 +23,6 @@ interface House {
   madeByMe: boolean;
 }
 
-type ErrorMessagesKeys = typeof ErrorMessages[keyof typeof ErrorMessages]
+type ErrorMessagesKeys = (typeof ErrorMessages)[keyof typeof ErrorMessages]
 
 export type { House, ErrorMessagesKeys }

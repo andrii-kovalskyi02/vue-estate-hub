@@ -6,12 +6,9 @@
           <BackButton v-if="isMobile" :is-mobile="isMobile" />
           <BackButton v-else label="Back to overview" />
         </div>
-        <HouseActions
-          v-if="isMobile && !error && house?.madeByMe"
-          :is-mobile="isMobile"
-        />
+        <HouseActions v-if="isMobile && !error && house?.madeByMe" :is-mobile="isMobile" />
       </div>
-      <template v-if="error">
+      <template v-if="error && !house">
         <ErrorNotification :error-message="ErrorMessages.ErrorFetchingData" />
       </template>
       <HouseDetails v-else-if="house" :house="house" :is-mobile="isMobile" />

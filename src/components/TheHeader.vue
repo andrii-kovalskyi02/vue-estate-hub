@@ -1,7 +1,7 @@
 <template>
   <header class="header" role="banner" aria-label="Site header">
     <div class="header__content">
-      <MobileNav v-if="isMobile"/>
+      <MobileNav v-if="isMobile" />
       <DesktopNav v-else />
     </div>
   </header>

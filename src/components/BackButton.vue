@@ -13,10 +13,13 @@
 import CustomButton from './CustomButton.vue'
 import TheIcon from './TheIcon.vue'
 
-withDefaults(defineProps<{
-    label?: String,
+withDefaults(
+  defineProps<{
+    label?: String
     isMobile?: Boolean
-  }>(), {
-  isMobile: () => false
-})
+  }>(),
+  {
+    isMobile: () => false
+  }
+)
 </script>

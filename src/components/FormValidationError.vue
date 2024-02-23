@@ -1,11 +1,5 @@
 <template>
-  <span
-    v-if="isErrorVisible"
-    :id="id"
-    class="form-error-msg"
-    role="alert"
-    tabindex="0"
-  > 
+  <span v-if="isErrorVisible" :id="id" class="form-error-msg" role="alert" tabindex="0">
     {{ message }}
   </span>
 </template>
@@ -14,9 +8,9 @@
 import type { Ref } from 'vue'
 
 defineProps<{
-  id: string,
-  isErrorVisible: boolean,
-  message: string | Ref<string>,
+  id: string
+  isErrorVisible: boolean
+  message: string | Ref<string>
 }>()
 </script>
 

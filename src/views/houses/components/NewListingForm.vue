@@ -7,7 +7,7 @@
   >
     <div class="new-listing__form-group">
       <BaseInput
-        v-model.trim="formData.streetName"
+        v-model="formData.streetName"
         placeholder="Enter the street name"
         class="new-listing__form-input"
         :class="{ 'new-listing__form-input--error': v$.formData.streetName.$error }"
@@ -115,7 +115,7 @@
           accept="image/png, image/jpeg"
           @change="handleFileChange"
           hidden
-        >
+        />
         <div
           ref="imgView"
           class="new-listing__img-view"
@@ -191,7 +191,7 @@
       <div class="new-listing__form-group">
         <TheSelect
           :options="garageOptions"
-          @option-change="(option) => formData.hasGarage = option"
+          @option-change="(option) => (formData.hasGarage = option)"
           label="Garage*"
           label-for="garage"
           label-class="new-listing__form-label"
@@ -268,7 +268,7 @@
       />
     </div>
     <div class="new-listing__form-group">
-      <BaseTextarea 
+      <BaseTextarea
         v-model.trim="formData.description"
         placeholder="Enter description"
         class="new-listing__form-input new-listing__form-input--textarea"
@@ -286,32 +286,19 @@
       />
     </div>
     <div class="new-listing__form-submit-btn-wrapper">
-      <CustomButton
-        type="submit"
-        custom-class="post"
-      >
+      <CustomButton type="submit" custom-class="post">
         <LoadingIndicator v-if="loading" />
-        <template v-else >Post</template>
+        <template v-else>Post</template>
       </CustomButton>
     </div>
-    <ErrorNotification
-      v-if="error"
-      :error-message="ErrorMessages.ErrorSubmittingForm"
-    />
+    <ErrorNotification v-if="error" :error-message="ErrorMessages.ErrorSubmittingForm" />
   </form>
 </template>
 
 <script setup lang="ts">
 import { computed, nextTick, ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
-import {
-  minLength,
-  maxLength,
-  helpers,
-  numeric,
-  minValue,
-  maxValue
-} from '@vuelidate/validators'
+import { minLength, maxLength, helpers, numeric, minValue, maxValue } from '@vuelidate/validators'
 import CustomButton from '@/components/CustomButton.vue'
 import TheIcon from '@/components/TheIcon.vue'
 import BaseInput from '@/components/BaseInput.vue'
@@ -344,7 +331,7 @@ const formData = ref({
   bedrooms: '',
   bathrooms: '',
   constructionYear: '',
-  description: '',
+  description: ''
 })
 
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -370,9 +357,7 @@ const isValidImgType = () => {
 const currentYear = computed(() => new Date().getFullYear())
 
 const currentImgAriaLabel = computed(() => {
-  return imgFile.value
-    ? `Image Uploaded with the Name: ${imgFileName.value}`
-    : undefined
+  return imgFile.value ? `Image Uploaded with the Name: ${imgFileName.value}` : undefined
 })
 
 const rules = computed(() => {
@@ -391,7 +376,7 @@ const rules = computed(() => {
         required: requiredMessage,
         numeric,
         minValue: minValue(1),
-        maxLength: maxLength(10),
+        maxLength: maxLength(10)
       },
       numberAddition: {
         maxLength: maxLength(6),
@@ -405,14 +390,14 @@ const rules = computed(() => {
         validZip: helpers.withMessage(
           'Netherland ZIPs must have exactly 4 digits, followed by space and 2 uppercase letters except SA, SD and SS, for instance "0000 AA"',
           isValidZip
-        ),
+        )
       },
       city: {
         required: requiredMessage,
         validCity: helpers.withMessage(
           'Please enter a valid city name',
           isValidCity
-        ),
+        )
       },
       price: {
         required: requiredMessage,
@@ -425,7 +410,7 @@ const rules = computed(() => {
         minValue: minValue(1)
       },
       hasGarage: {
-        required: requiredMessage,
+        required: requiredMessage
       },
       bedrooms: {
         required: requiredMessage,
@@ -446,7 +431,7 @@ const rules = computed(() => {
       description: {
         required: requiredMessage,
         minLength: minLength(10),
-        maxLength: maxLength(500),
+        maxLength: maxLength(500)
       }
     },
     imgFile: {
@@ -454,7 +439,7 @@ const rules = computed(() => {
       isImgValid: helpers.withMessage(
         'Invalid image format. Please select a PNG, JPEG, or JPG file',
         isValidImgType
-      ),
+      )
     }
   }
 })
@@ -501,7 +486,7 @@ const handleImageDragAndDrop = (event: DragEvent) => {
 
 const handleSubmit = async () => {
   const isFormDataCorrect = await v$.value.$validate()
-  
+
   if (isFormDataCorrect) {
     await dataOperation('POST', null, [formData.value, imgFile.value])
     await nextTick()
@@ -518,18 +503,19 @@ const handleSubmit = async () => {
               house.value.location.houseNumberAddition
             )
           )
-        },
+        }
       })
     }
   } else {
-    const firstInvalidInputEl = document.querySelector('.new-listing')?.querySelector('[aria-invalid="true"]')
-  
+    const firstInvalidInputEl = document
+      .querySelector('.new-listing')
+      ?.querySelector('[aria-invalid="true"]')
+
     if (firstInvalidInputEl) {
       firstInvalidInputEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }
 }
-
 </script>
 
 <style lang="scss">
@@ -541,8 +527,10 @@ const handleSubmit = async () => {
   gap: 20px;
   width: 100%;
 
+  animation: $initialAnimation;
+
   @include onTablet {
-    width: 400px
+    width: 400px;
   }
 
   &__form-group {
@@ -564,10 +552,16 @@ const handleSubmit = async () => {
     height: 120px;
     margin-top: 20px;
     border: 2px dashed transparent;
-    border-image: repeating-linear-gradient(to left top, $tertiary-color-2, $tertiary-color-2 10px, transparent 10px, transparent 20px);
+    border-image: repeating-linear-gradient(
+      to left top,
+      $tertiary-color-2,
+      $tertiary-color-2 10px,
+      transparent 10px,
+      transparent 20px
+    );
     border-image-slice: 1;
     cursor: pointer;
-    
+
     &--with-img {
       border: none;
       border-radius: 8px;
@@ -577,7 +571,13 @@ const handleSubmit = async () => {
     }
 
     &--error {
-      border-image: repeating-linear-gradient(to left top, $primary-color, $primary-color 10px, transparent 10px, transparent 20px);
+      border-image: repeating-linear-gradient(
+        to left top,
+        $primary-color,
+        $primary-color 10px,
+        transparent 10px,
+        transparent 20px
+      );
       border-image-slice: 1;
     }
   }
@@ -603,7 +603,7 @@ const handleSubmit = async () => {
     &--textarea {
       height: 150px;
     }
-    
+
     &::placeholder {
       color: $tertiary-color-2;
     }

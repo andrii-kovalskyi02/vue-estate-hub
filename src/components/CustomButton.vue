@@ -13,27 +13,27 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-    customClass: string,
-    isActive?: boolean,
+withDefaults(
+  defineProps<{
+    customClass: string
+    isActive?: boolean
     hasError?: boolean
-  }>(), {
-  isActive: () => false,
-  hasError: () => false
-})
+  }>(),
+  {
+    isActive: () => false,
+    hasError: () => false
+  }
+)
 </script>
 
 <style lang="scss">
 .button {
-  position: relative;
-  z-index: 1;
   @include flexCenter;
   background-color: unset;
   cursor: pointer;
 
   &--clear {
     position: absolute;
-    z-index: 1;
     right: 20px;
   }
 
@@ -128,6 +128,30 @@ withDefaults(defineProps<{
     }
 
     transition: fill 0.3s;
+  }
+
+  &--delete-listing,
+  &--go-back {
+    width: 80%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: $primary-color;
+
+    @extend %text-style-buttons-and-tabs;
+    text-transform: uppercase;
+    color: $background-color-2;
+
+    @include hover(background-color, $primary-color-hover);
+
+    @include onDesktop {
+      height: 50px;
+    }
+  }
+
+  &--go-back {
+    background-color: $secondary-color;
+
+    @include hover(background-color, $secondary-color-hover);
   }
 }
 </style>

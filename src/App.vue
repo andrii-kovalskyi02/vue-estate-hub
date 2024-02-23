@@ -14,8 +14,8 @@ import TheHeader from '@/components/TheHeader.vue'
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/_normalize";
-@import "@/assets/styles/_reset";
+@import '@/assets/styles/_normalize';
+@import '@/assets/styles/_reset';
 
 .app {
   min-height: 100vh;

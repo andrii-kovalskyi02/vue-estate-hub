@@ -19,17 +19,17 @@
             <div v-if="housesStore.searchQuery" class="houses-view__search-count">
               <SearchResultsCount :filtered-data="filteredHouses" />
             </div>
-            <HousesList :houses="filteredHouses"/>
+            <HousesList :houses="filteredHouses" />
           </template>
           <div v-else class="houses-view__not-found-wrapper">
-            <NotFound>No results found. <br> Please try another keyword.</NotFound>
+            <NotFound
+              >No results found. <br />
+              Please try another keyword.</NotFound
+            >
           </div>
         </template>
         <LoadingIndicator v-else-if="!error" />
-        <ErrorNotification
-          v-else
-          :error-message="ErrorMessages.ErrorFetchingData"
-        />
+        <ErrorNotification v-else :error-message="ErrorMessages.ErrorFetchingData" />
       </TheContainer>
     </section>
   </template>
@@ -81,6 +81,8 @@ onMounted(() => housesStore.fetchData())
 
 <style scoped lang="scss">
 .houses-view {
+  animation: $initialAnimation;
+
   &__create-house-container {
     position: relative;
     display: flex;
@@ -112,7 +114,7 @@ onMounted(() => housesStore.fetchData())
     flex-direction: column;
     gap: 15px;
     margin-bottom: 25px;
-    
+
     @include onTablet {
       flex-direction: row;
       justify-content: space-between;

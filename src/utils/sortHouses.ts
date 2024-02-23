@@ -1,9 +1,9 @@
-import type { House } from "@/views/houses/houses.types"
-import { SortBy } from "@/views/houses/houses.enums"
+import type { House } from '@/views/houses/houses.types'
+import { SortBy } from '@/views/houses/houses.enums'
 
 export function sortHouses(
   houses: House[] = [],
-  sortBy: SortBy,
+  sortBy: SortBy
 ): House[] {
   if (sortBy) {
     return [...houses].sort((firstHouse, secondHouse) => {

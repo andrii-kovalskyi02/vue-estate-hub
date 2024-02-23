@@ -27,6 +27,8 @@ defineProps<{
   gap: 15px;
   list-style: none;
 
+  animation: $initialAnimation;
+
   @include onTablet {
     gap: 18px;
   }
@@ -41,5 +43,8 @@ defineProps<{
 .list-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+.list-leave-active {
+  position: absolute;
 }
 </style>

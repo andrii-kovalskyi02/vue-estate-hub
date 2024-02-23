@@ -10,7 +10,7 @@
     <div class="house__info-container">
       <div class="house__base-line">
         <h1 className="house__title">{{ houseTitle }}</h1>
-        <HouseActions v-if="!isMobile" />
+        <HouseActions v-if="!isMobile && madeByMe" />
       </div>
 
       <div className="house__specs-container">
@@ -76,15 +76,17 @@ import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
 
-const props = withDefaults(defineProps<{
+const props = withDefaults(
+  defineProps<{
     house: House
     isMobile?: Boolean
-  }>(), {
-  isMobile: () => false
-})
+  }>(),
+  {
+    isMobile: () => false
+  }
+)
 
 const {
-  id,
   image,
   price,
   rooms,
@@ -93,6 +95,7 @@ const {
   location,
   constructionYear,
   hasGarage,
+  madeByMe
 } = props.house
 
 const houseTitle = computed(() => {

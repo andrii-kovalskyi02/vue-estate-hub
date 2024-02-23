@@ -3,7 +3,7 @@ import { client } from '@/utils/fetchClient'
 
 const createHouse = (house: House) => client.post<House>('', house)
 
-const uploadImage = (houseId: number, img: any) => { 
+const uploadImage = (houseId: number, img: any) => {
   return client.post(`/${houseId}/upload`, img)
 }
 

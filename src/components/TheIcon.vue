@@ -8,12 +8,15 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{
-    type: String,
-    isActive?: Boolean
-  }>(), {
-  isActive: () => false
-})
+withDefaults(
+  defineProps<{
+    type: string
+    isActive?: boolean
+  }>(),
+  {
+    isActive: () => false
+  }
+)
 </script>
 
 <style scoped lang="scss">

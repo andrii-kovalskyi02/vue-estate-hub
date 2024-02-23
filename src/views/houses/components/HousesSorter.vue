@@ -26,7 +26,7 @@ const route = useRoute()
 const handleClick = (value: SortBy) => {
   router.push({
     name: housesRouteNames.houses,
-    query: { ...route.query, sort: value },
+    query: { ...route.query, sort: value }
   })
 }
 </script>

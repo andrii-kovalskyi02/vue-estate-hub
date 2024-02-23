@@ -41,6 +41,8 @@ const { isMobile } = useIsMobile()
     @include flexCenter;
     margin-bottom: 30px;
 
+    animation: $initialAnimation;
+
     @include onTablet {
       flex-direction: column;
       align-items: flex-start;

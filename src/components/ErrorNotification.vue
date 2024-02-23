@@ -8,7 +8,6 @@
 defineProps<{
   errorMessage: string
 }>()
-
 </script>
 
 <style lang="scss" scoped>

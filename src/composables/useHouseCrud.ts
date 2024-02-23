@@ -17,18 +17,18 @@ export default function useHouseCrud() {
   ) {
     loading.value = true
     error.value = null
-    
+
     try {
       switch (type) {
         case 'GET':
           if (id) {
-            house.value = (await getHouse(id))[0]
+            house.value = (await getHouse(id))[0] || null
             break
           }
 
           housesStore.houses = await getHouses()
           break
-        
+
         case 'POST': {
           if (payload && payload.length > 0) {
             const newHouse: House = await createHouse(payload[0])
@@ -45,9 +45,11 @@ export default function useHouseCrud() {
         case 'DELETE':
           if (id) {
             await deleteHouse(id)
+            const index = housesStore.houses.findIndex(house => house.id === id)
+            housesStore.houses.splice(index, 1)
           }
           break
-          
+
         default:
           throw new Error('Invalid operation type')
       }

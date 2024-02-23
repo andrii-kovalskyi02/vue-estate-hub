@@ -1,14 +1,10 @@
 <template>
-  <label
-    v-if="label"
-    :for="labelFor"
-    :class="labelClass"
-  >
+  <label v-if="label" :for="labelFor" :class="labelClass">
     {{ label }}
   </label>
   <textarea
     :value="modelValue"
-    @input="$emit('update:modelValue', ($event.target as HTMLInputElement)?.value)"
+    @input="handleInput"
     :id="labelFor"
     v-bind="$attrs"
   />
@@ -17,19 +13,27 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    label: string | boolean,
-    labelFor: string,
-    labelClass?: string,
-    modelValue: string,
+    label: string | boolean
+    labelFor: string
+    labelClass?: string
+    modelValue: string
   }>(),
   {
     label: () => false,
     labelFor: () => '',
     labelClass: () => '',
-    modelValue: () => '',
+    modelValue: () => ''
   }
 )
+
+const emit = defineEmits<{
+  'update:modelValue': [value: string]
+}>()
+
+const handleInput = (event: Event) => {
+  const target = event.target as HTMLInputElement
+  emit('update:modelValue', target.value)
+}
 </script>
 
-<style scoped lang="scss">
-</style>
+<style scoped lang="scss"></style>

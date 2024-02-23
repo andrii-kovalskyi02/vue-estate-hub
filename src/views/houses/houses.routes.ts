@@ -22,7 +22,7 @@ export const housesRoutes: RouteRecordRaw[] = [
         name: housesRouteNames.newListing,
         path: 'new-listing',
         component: () => import('@/views/houses/NewListingView.vue')
-      },
+      }
     ]
   }
 ]

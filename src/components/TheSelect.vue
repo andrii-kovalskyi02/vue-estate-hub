@@ -1,15 +1,11 @@
 <template>
-  <label
-    v-if="label"
-    :for="labelFor"
-    :class="labelClass"
-  >
+  <label v-if="label" :for="labelFor" :class="labelClass">
     {{ label }}
   </label>
   <div
-    ref="selectRef"
     class="select"
     @keyup.esc="handleEscPress"
+    v-on-click-outside="handleEscPress"
   >
     <CustomButton
       :id="labelFor"
@@ -35,29 +31,18 @@
         >
           <use href="#arrow-down" />
         </svg>
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 2.5 16 16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg width="16" height="16" viewBox="0 2.5 16 16" xmlns="http://www.w3.org/2000/svg">
           <path
             id="arrow-down"
-
             fill-rule="evenodd"
             clip-rule="evenodd"
             d="M12.4715 5.52864C12.7318 5.78899 12.7318 6.2111 12.4715 6.47145L8.47149 10.4714C8.21114 10.7318 7.78903 10.7318 7.52868 10.4714L3.52868 6.47144C3.26833 6.2111 3.26833 5.78899 3.52868 5.52864C3.78903 5.26829 4.21114 5.26829 4.47149 5.52864L8.00008 9.05723L11.5287 5.52864C11.789 5.26829 12.2111 5.26829 12.4715 5.52864Z"
             fill="#c3c3c3"
           />
         </svg>
-
       </div>
     </CustomButton>
-    <ul
-      class="select__list"
-      :class="{ 'select__list--visible': isSelectClicked }"
-      tabindex="0"
-    >
+    <ul class="select__list" :class="{ 'select__list--visible': isSelectClicked }">
       <li
         v-for="{ label, value } in options"
         :key="label"
@@ -77,15 +62,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
+import { vOnClickOutside } from '@vueuse/components'
 import CustomButton from './CustomButton.vue'
 
 withDefaults(
   defineProps<{
     options: Array<any>
-    label: string | boolean,
-    labelFor: string,
-    labelClass?: string,
+    label: string | boolean
+    labelFor: string
+    labelClass?: string
     hasValidationError: boolean
   }>(),
   {
@@ -103,25 +89,18 @@ const emit = defineEmits<{
 const selectedOption = ref('Select')
 const currentOption = ref('Select')
 const isSelectClicked = ref(false)
-const selectRef = ref<HTMLDivElement | null>(null)
 
 const handleMouseEnter = (optionLabel: string) => {
   currentOption.value = optionLabel
 }
 
-const toggleSelect = () => isSelectClicked.value = !isSelectClicked.value
+const toggleSelect = () => (isSelectClicked.value = !isSelectClicked.value)
 
 const handleOptionClick = (optionLabel: string, optionValue: string) => {
   selectedOption.value = optionLabel
+  currentOption.value = selectedOption.value
   isSelectClicked.value = !isSelectClicked.value
   emit('option-change', optionValue)
-}
-
-const handleClickOutside = (event: Event) => {
-  if (selectRef.value && !selectRef.value.contains(event.target as Node)) {
-    currentOption.value = selectedOption.value
-    isSelectClicked.value = false
-  }
 }
 
 const handleEscPress = () => {
@@ -130,13 +109,6 @@ const handleEscPress = () => {
     isSelectClicked.value = false
   }
 }
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
 </script>
 
 <style scoped lang="scss">
@@ -179,7 +151,7 @@ onUnmounted(() => {
     cursor: pointer;
 
     &--hovered {
-      background-color: $background-color-1
+      background-color: $background-color-1;
     }
 
     @include hover(color, $text-color-primary);

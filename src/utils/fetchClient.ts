@@ -16,8 +16,8 @@ async function request<T>(
       url: BASE_URL + url,
       data: payload,
       headers: {
-        'X-Api-Key': API_KEY,
-      },
+        'X-Api-Key': API_KEY
+      }
     })
 
     return response.data
@@ -30,5 +30,5 @@ export const client = {
   get: <T>(url: string) => request<T>(url),
   post: <T>(url: string, payload: any) => request<T>(url, 'POST', payload),
   patch: <T>(url: string, payload: any) => request<T>(url, 'PATCH', payload),
-  delete: (url: string) => request(url, 'DELETE'),
+  delete: (url: string) => request(url, 'DELETE')
 }

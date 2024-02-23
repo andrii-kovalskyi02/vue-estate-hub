@@ -3,10 +3,7 @@ import { housesRouteNames, housesRoutes } from '@/views/houses/houses.routes'
 import { aboutRoutes } from '@/views/about/about.routes'
 import { SortBy } from '@/views/houses/houses.enums'
 
-export const routes = [
-  ...housesRoutes,
-  ...aboutRoutes
-]
+export const routes = [...housesRoutes, ...aboutRoutes]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
