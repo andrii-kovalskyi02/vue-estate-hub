@@ -1,66 +1,35 @@
 <template>
-  <section class="new-listing-view">
-    <div class="new-listing-view__background">
-      <TheContainer>
-        <div class="new-listing-view__top-elements-container">
-          <div class="new-listing-view__back-button-wrapper">
-            <BackButton :label="isMobile ? '' : 'Back to overview'" />
-          </div>
-          <h1 class="new-listing-view__title">Create new listing</h1>
-        </div>
-        <NewListingForm />
-      </TheContainer>
-    </div>
-  </section>
+  <ListingTemplate
+    listing-title="Create new listing"
+    back-button-title="Back to overview"
+  >
+    <ListingForm
+      :listingId="house?.id"
+      :loading="loading"
+      :error="error"
+      submit-button-text="Post"
+      @submit="handleSubmit"
+    />
+  </ListingTemplate>
 </template>
 
 <script setup lang="ts">
-import TheContainer from '@/components/TheContainer.vue'
-import NewListingForm from './components/NewListingForm.vue'
-import BackButton from '@/components/BackButton.vue'
-import useIsMobile from '@/composables/useIsMobile'
+import useHouseCrud from '@/composables/useHouseCrud'
+import ListingTemplate from './components/ListingTemplate.vue'
+import ListingForm from './components/ListingForm.vue'
+import type { ListingFormData } from './houses.types'
 
-const { isMobile } = useIsMobile()
+const { house, loading, error, dataOperation } = useHouseCrud()
+
+const handleSubmit = async (
+  formData: ListingFormData,
+  imgFile: FormData | null,
+  redirect: () => void
+) => {
+  await dataOperation('POST', null, [formData, imgFile])
+  redirect()
+}
+
 </script>
 
-<style scoped lang="scss">
-.new-listing-view {
-  &__background {
-    background-image: url(/images/img_background@3x.png);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    background-size: contain;
-
-    @include onTablet {
-      background-size: cover;
-    }
-  }
-
-  &__top-elements-container {
-    position: relative;
-    @include flexCenter;
-    margin-bottom: 30px;
-
-    animation: $initialAnimation;
-
-    @include onTablet {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 30px;
-    }
-  }
-
-  &__back-button-wrapper {
-    position: absolute;
-    left: 0;
-
-    @include onTablet {
-      position: static;
-    }
-  }
-
-  &__title {
-    @extend %text-style-header1;
-  }
-}
-</style>
+<style scoped lang="scss"></style>

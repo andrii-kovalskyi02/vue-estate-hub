@@ -1,19 +1,19 @@
 <template>
   <form
-    name="new-listing-form"
-    class="new-listing"
+    name="listing-form"
+    class="listing"
     @submit.prevent="handleSubmit"
     novalidate
   >
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseInput
         v-model="formData.streetName"
         placeholder="Enter the street name"
-        class="new-listing__form-input"
-        :class="{ 'new-listing__form-input--error': v$.formData.streetName.$error }"
+        class="listing__form-input"
+        :class="{ 'listing__form-input--error': v$.formData.streetName.$error }"
         label="Street name*"
         label-for="street-name"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="street-name-error"
         :aria-invalid="v$.formData.streetName.$error"
       />
@@ -23,18 +23,18 @@
         :message="v$.formData.streetName.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group new-listing__form-group--two-columns">
-      <div class="new-listing__form-group">
+    <div class="listing__form-group listing__form-group--two-columns">
+      <div class="listing__form-group">
         <BaseInput
           type="number"
           v-model="formData.houseNumber"
           placeholder="Enter house number"
           min="1"
-          class="new-listing__form-input"
-          :class="{ 'new-listing__form-input--error': v$.formData.houseNumber.$error }"
+          class="listing__form-input"
+          :class="{ 'listing__form-input--error': v$.formData.houseNumber.$error }"
           label="House number*"
           label-for="house-number"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           aria-describedby="house-number-error"
           :aria-invalid="v$.formData.houseNumber.$error"
         />
@@ -44,15 +44,15 @@
           :message="v$.formData.houseNumber.$errors[0]?.$message"
         />
       </div>
-      <div class="new-listing__form-group">
+      <div class="listing__form-group">
         <BaseInput
           v-model.trim="formData.numberAddition"
           placeholder="e.g. A"
-          class="new-listing__form-input"
-          :class="{ 'new-listing__form-input--error': v$.formData.numberAddition.$error }"
+          class="listing__form-input"
+          :class="{ 'listing__form-input--error': v$.formData.numberAddition.$error }"
           label="Addition (optional)"
           label-for="addition"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           aria-describedby="addition-error"
           :aria-invalid="v$.formData.numberAddition.$error"
         />
@@ -63,16 +63,16 @@
         />
       </div>
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseInput
         v-model.trim="formData.zip"
         placeholder="e.g. 1000 AA"
         autocomplete="postal-code"
-        class="new-listing__form-input"
-        :class="{ 'new-listing__form-input--error': v$.formData.zip.$error }"
+        class="listing__form-input"
+        :class="{ 'listing__form-input--error': v$.formData.zip.$error }"
         label="Postal code*"
         label-for="postal-code"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="postal-code-error"
         :aria-invalid="v$.formData.zip.$error"
       />
@@ -82,15 +82,15 @@
         :message="v$.formData.zip.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseInput
         v-model.trim="formData.city"
         placeholder="e.g. Utrecht"
-        class="new-listing__form-input"
-        :class="{ 'new-listing__form-input--error': v$.formData.city.$error }"
+        class="listing__form-input"
+        :class="{ 'listing__form-input--error': v$.formData.city.$error }"
         label="City*"
         label-for="city"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="city-error"
         :aria-invalid="v$.formData.city.$error"
       />
@@ -100,10 +100,10 @@
         :message="v$.formData.city.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <label
         for="picture"
-        class="new-listing__form-label new-listing__form-label--upload-img"
+        class="listing__form-label listing__form-label--upload-img"
         @drop.prevent="handleImageDragAndDrop"
         @dragover.prevent
       >
@@ -118,14 +118,14 @@
         />
         <div
           ref="imgView"
-          class="new-listing__img-view"
+          class="listing__img-view"
           :class="{
-            'new-listing__img-view--with-img': imgFile,
-            'new-listing__img-view--error': v$.imgFile.$error
+            'listing__img-view--with-img': imgFile,
+            'listing__img-view--error': v$.imgFile.$error
           }"
           @keyup.enter="triggerFileInputClick"
           :aria-invalid="v$.imgFile.$error"
-          :aria-label="currentImgAriaLabel"
+          :aria-label="imageDescription"
           :aria-labelledby="imgFile ? undefined : 'picture'"
           aria-describedby="picture-error"
           tabindex="0"
@@ -147,17 +147,17 @@
         :message="v$.imgFile.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseInput
         type="number"
         v-model="formData.price"
         placeholder="e.g. €150.000"
         min="1"
-        class="new-listing__form-input"
-        :class="{ 'new-listing__form-input--error': v$.formData.price.$error }"
+        class="listing__form-input"
+        :class="{ 'listing__form-input--error': v$.formData.price.$error }"
         label="Price*"
         label-for="price"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="price-error"
         :aria-invalid="v$.formData.price.$error"
       />
@@ -167,18 +167,18 @@
         :message="v$.formData.price.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group new-listing__form-group--two-columns">
-      <div class="new-listing__form-group">
+    <div class="listing__form-group listing__form-group--two-columns">
+      <div class="listing__form-group">
         <BaseInput
           type="number"
           v-model="formData.size"
           placeholder="e.g. 60m2"
           min="1"
-          class="new-listing__form-input"
-          :class="{ 'new-listing__form-input--error': v$.formData.size.$error }"
+          class="listing__form-input"
+          :class="{ 'listing__form-input--error': v$.formData.size.$error }"
           label="Size*"
           label-for="size"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           aria-describedby="size-error"
           :aria-invalid="v$.formData.size.$error"
         />
@@ -188,13 +188,14 @@
           :message="v$.formData.size.$errors[0]?.$message"
         />
       </div>
-      <div class="new-listing__form-group">
+      <div class="listing__form-group">
         <TheSelect
           :options="garageOptions"
+          :option="optionLabel"
           @option-change="(option) => (formData.hasGarage = option)"
           label="Garage*"
           label-for="garage"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           :has-validation-error="v$.formData.hasGarage.$error"
         />
         <FormValidationError
@@ -204,18 +205,18 @@
         />
       </div>
     </div>
-    <div class="new-listing__form-group new-listing__form-group--two-columns">
-      <div class="new-listing__form-group">
+    <div class="listing__form-group listing__form-group--two-columns">
+      <div class="listing__form-group">
         <BaseInput
           type="number"
           v-model="formData.bedrooms"
           placeholder="Enter amount"
           min="0"
-          class="new-listing__form-input"
-          :class="{ 'new-listing__form-input--error': v$.formData.bedrooms.$error }"
+          class="listing__form-input"
+          :class="{ 'listing__form-input--error': v$.formData.bedrooms.$error }"
           label="Bedrooms*"
           label-for="bedrooms"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           aria-describedby="bedrooms-error"
           :aria-invalid="v$.formData.bedrooms.$error"
         />
@@ -225,17 +226,17 @@
           :message="v$.formData.bedrooms.$errors[0]?.$message"
         />
       </div>
-      <div class="new-listing__form-group">
+      <div class="listing__form-group">
         <BaseInput
           type="number"
           v-model="formData.bathrooms"
           placeholder="Enter amount"
           min="0"
-          class="new-listing__form-input"
-          :class="{ 'new-listing__form-input--error': v$.formData.bathrooms.$error }"
+          class="listing__form-input"
+          :class="{ 'listing__form-input--error': v$.formData.bathrooms.$error }"
           label="Bathrooms*"
           label-for="bathrooms"
-          label-class="new-listing__form-label"
+          label-class="listing__form-label"
           aria-describedby="bathrooms-error"
           :aria-invalid="v$.formData.bathrooms.$error"
         />
@@ -246,18 +247,18 @@
         />
       </div>
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseInput
         type="number"
         v-model="formData.constructionYear"
         placeholder="e.g. 1990"
         min="1901"
         :max="currentYear"
-        class="new-listing__form-input"
-        :class="{ 'new-listing__form-input--error': v$.formData.constructionYear.$error }"
+        class="listing__form-input"
+        :class="{ 'listing__form-input--error': v$.formData.constructionYear.$error }"
         label="Construction date*"
         label-for="construction-year"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="construction-year-error"
         :aria-invalid="v$.formData.constructionYear.$error"
       />
@@ -267,15 +268,15 @@
         :message="v$.formData.constructionYear.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-group">
+    <div class="listing__form-group">
       <BaseTextarea
         v-model.trim="formData.description"
         placeholder="Enter description"
-        class="new-listing__form-input new-listing__form-input--textarea"
-        :class="{ 'new-listing__form-input--error': v$.formData.description.$error }"
+        class="listing__form-input listing__form-input--textarea"
+        :class="{ 'listing__form-input--error': v$.formData.description.$error }"
         label="Description*"
         label-for="description"
-        label-class="new-listing__form-label"
+        label-class="listing__form-label"
         aria-describedby="description-error"
         :aria-invalid="v$.formData.description.$error"
       />
@@ -285,10 +286,10 @@
         :message="v$.formData.description.$errors[0]?.$message"
       />
     </div>
-    <div class="new-listing__form-submit-btn-wrapper">
-      <CustomButton type="submit" custom-class="post">
+    <div class="listing__form-submit-btn-wrapper">
+      <CustomButton type="submit" custom-class="submit">
         <LoadingIndicator v-if="loading" />
-        <template v-else>Post</template>
+        <template v-else>{{ submitButtonText }}</template>
       </CustomButton>
     </div>
     <ErrorNotification v-if="error" :error-message="ErrorMessages.ErrorSubmittingForm" />
@@ -296,7 +297,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { minLength, maxLength, helpers, numeric, minValue, maxValue } from '@vuelidate/validators'
 import CustomButton from '@/components/CustomButton.vue'
@@ -304,7 +305,6 @@ import TheIcon from '@/components/TheIcon.vue'
 import BaseInput from '@/components/BaseInput.vue'
 import { requiredMessage } from '@/validators/validators'
 import BaseTextarea from '@/components/BaseTextarea.vue'
-import useHouseCrud from '@/composables/useHouseCrud'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import { useRouter } from 'vue-router'
 import ErrorNotification from '@/components/ErrorNotification.vue'
@@ -315,11 +315,24 @@ import TheSelect from '@/components/TheSelect.vue'
 import { garageOptions } from '@/utils/garageOptions'
 import FormValidationError from '@/components/FormValidationError.vue'
 import { housesRouteNames } from '@/views/houses/houses.routes'
+import type { ListingFormData } from '../houses.types'
+
+const props = defineProps<{
+  listingData?: ListingFormData,
+  listingImage?: string,
+  listingId: number | undefined,
+  loading: boolean,
+  error: any,
+  submitButtonText: string
+}>()
+
+const emit = defineEmits<{
+  'submit': [formData: ListingFormData, imgFile: FormData | null, redirect: () => void]
+}>()
 
 const router = useRouter()
-const { house, loading, error, dataOperation } = useHouseCrud()
 
-const formData = ref({
+const intialFormData = {
   streetName: '',
   houseNumber: '',
   numberAddition: undefined,
@@ -327,12 +340,18 @@ const formData = ref({
   city: '',
   price: '',
   size: '',
-  hasGarage: '',
+  hasGarage: undefined,
   bedrooms: '',
   bathrooms: '',
   constructionYear: '',
   description: ''
-})
+}
+
+const formData = ref<ListingFormData>(
+  props.listingData
+    ? { ...props.listingData }
+    : intialFormData
+)
 
 const fileInput = ref<HTMLInputElement | null>(null)
 const imgView = ref<HTMLDivElement | null>(null)
@@ -344,6 +363,10 @@ const isValidAddition = (value: string) => /^[A-Za-z0-9\s\-']*$/.test(value)
 const isValidZip = (value: string) => /^[1-9][0-9]{3}\s(?!SA|SD|SS)[A-Z]{2}$/.test(value)
 const isValidCity = (value: string) => /^[A-Za-z\s-]+$/.test(value)
 const isValidImgType = () => {
+  if (isImagePresent.value) {
+    return true
+  }
+
   const files = fileInput.value?.files
 
   if (files?.length) {
@@ -354,10 +377,25 @@ const isValidImgType = () => {
   return false
 }
 
+const isImagePresent = computed(() => {
+  return !imgFile.value?.has('image')
+})
+
+const optionLabel = computed(() => props.listingData
+  ? (props.listingData?.hasGarage ? 'Yes' : 'No')
+  : undefined
+)
+
 const currentYear = computed(() => new Date().getFullYear())
 
-const currentImgAriaLabel = computed(() => {
-  return imgFile.value ? `Image Uploaded with the Name: ${imgFileName.value}` : undefined
+const imageDescription = computed(() => {
+  if (!imgFile.value) {
+    return undefined
+  }
+
+  return imgFileName.value
+    ? `Image uploaded with the name: ${imgFileName.value}`
+    : 'Image is uploaded'
 })
 
 const rules = computed(() => {
@@ -484,31 +522,38 @@ const handleImageDragAndDrop = (event: DragEvent) => {
   }
 }
 
+const navigateToHouseRoute = () => {
+  if (props.listingId && !props.error) {
+    router.replace({
+      name: housesRouteNames.house,
+      params: {
+        houseId: props.listingId,
+        slug: addDashes(
+          makeAddressTitle(
+            formData.value.streetName,
+            +formData.value.houseNumber,
+            formData.value.numberAddition
+          )
+        )
+      }
+    })
+  }
+}
+
 const handleSubmit = async () => {
   const isFormDataCorrect = await v$.value.$validate()
 
   if (isFormDataCorrect) {
-    await dataOperation('POST', null, [formData.value, imgFile.value])
-    await nextTick()
-    
-    if (house.value && !error.value) {
-      router.replace({
-        name: housesRouteNames.house,
-        params: {
-          houseId: house.value.id,
-          slug: addDashes(
-            makeAddressTitle(
-              house.value.location.street,
-              house.value.location.houseNumber,
-              house.value.location.houseNumberAddition
-            )
-          )
-        }
-      })
+    let imgData = imgFile.value
+
+    if (isImagePresent.value) {
+      imgData = null
     }
+
+    emit('submit', formData.value, imgData, navigateToHouseRoute)
   } else {
     const firstInvalidInputEl = document
-      .querySelector('.new-listing')
+      .querySelector('.listing')
       ?.querySelector('[aria-invalid="true"]')
 
     if (firstInvalidInputEl) {
@@ -516,12 +561,17 @@ const handleSubmit = async () => {
     }
   }
 }
+
+onMounted(() => {
+  if (props.listingImage && imgView.value) {
+    imgFile.value = new FormData()
+    imgView.value.style.backgroundImage = `url(${props.listingImage})`
+  }
+})
 </script>
 
 <style lang="scss">
-.new-listing {
-  /* position: relative;
-  z-index: 100; */
+.listing {
   display: flex;
   flex-direction: column;
   gap: 20px;

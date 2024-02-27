@@ -5,7 +5,7 @@
         name: housesRouteNames.house,
         params: {
           houseId: id,
-          slug: addDashes(cardTitle)
+          slug: dashedSlug
         }
       }"
       className="card__link"
@@ -42,7 +42,7 @@
     </RouterLink>
 
     <div v-if="madeByMe" class="card__actions-wrapper">
-      <HouseActions :listingId="id" />
+      <HouseActions :listingId="id" :slug="dashedSlug" />
     </div>
   </section>
 </template>
@@ -74,6 +74,8 @@ const cardTitle = computed(() => {
 })
 
 const cardAddress = computed(() => `${location.zip} ${location.city}`)
+
+const dashedSlug = computed(() => addDashes(cardTitle.value))
 </script>
 
 <style scoped lang="scss">

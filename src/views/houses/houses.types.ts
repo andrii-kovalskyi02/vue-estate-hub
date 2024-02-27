@@ -23,6 +23,21 @@ interface House {
   madeByMe: boolean;
 }
 
+interface ListingFormData {
+  streetName: string;
+  houseNumber: string;
+  numberAddition?: string;
+  zip: string;
+  city: string;
+  price: string;
+  size: string;
+  hasGarage: boolean | undefined;
+  bedrooms: string;
+  bathrooms: string;
+  constructionYear: string;
+  description: string;
+}
+
 type ErrorMessagesKeys = (typeof ErrorMessages)[keyof typeof ErrorMessages]
 
-export type { House, ErrorMessagesKeys }
+export type { House, ListingFormData, ErrorMessagesKeys }

@@ -79,7 +79,7 @@ withDefaults(
   }
 
   &--create-new,
-  &--post {
+  &--submit {
     gap: 15px;
     width: 220px;
     height: 50px;

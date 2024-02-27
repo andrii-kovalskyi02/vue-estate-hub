@@ -1,7 +1,7 @@
 <template>
   <CustomButton
     custom-class="back"
-    @click="$router.back"
+    @click="goBack"
     :aria-label="label || 'Go Back to Previous Page'"
   >
     <TheIcon :type="isMobile ? 'back-mobile' : 'back'" />
@@ -10,16 +10,30 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import CustomButton from './CustomButton.vue'
 import TheIcon from './TheIcon.vue'
+import { housesRouteNames } from '@/views/houses/houses.routes'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
-    label?: String
-    isMobile?: Boolean
+    label?: string
+    isMobile?: boolean
+    goToMainPage?: boolean
   }>(),
   {
-    isMobile: () => false
+    isMobile: () => false,
+    goToMainPage: () => false
   }
 )
+
+const router = useRouter()
+
+const goBack = () => {
+  if (props.goToMainPage) {
+    router.push({ name: housesRouteNames.houses })
+  } else {
+    router.back()
+  }
+}
 </script>

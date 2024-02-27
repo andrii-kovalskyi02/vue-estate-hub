@@ -66,15 +66,17 @@ import { ref } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
 import CustomButton from './CustomButton.vue'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     options: Array<any>
+    option?: string
     label: string | boolean
     labelFor: string
     labelClass?: string
     hasValidationError: boolean
   }>(),
   {
+    option: () => 'Select',
     label: () => false,
     labelFor: () => '',
     labelClass: () => '',
@@ -83,11 +85,11 @@ withDefaults(
 )
 
 const emit = defineEmits<{
-  'option-change': [option: string]
+  'option-change': [option: boolean]
 }>()
 
-const selectedOption = ref('Select')
-const currentOption = ref('Select')
+const selectedOption = ref(props.option)
+const currentOption = ref(props.option)
 const isSelectClicked = ref(false)
 
 const handleMouseEnter = (optionLabel: string) => {
@@ -96,7 +98,7 @@ const handleMouseEnter = (optionLabel: string) => {
 
 const toggleSelect = () => (isSelectClicked.value = !isSelectClicked.value)
 
-const handleOptionClick = (optionLabel: string, optionValue: string) => {
+const handleOptionClick = (optionLabel: string, optionValue: boolean) => {
   selectedOption.value = optionLabel
   currentOption.value = selectedOption.value
   isSelectClicked.value = !isSelectClicked.value

@@ -1,8 +1,10 @@
 import { ref } from 'vue'
-import type { House } from '@/views/houses/houses.types'
-import { getHouses, getHouse, createHouse, deleteHouse, uploadImage } from '@/api/houses'
+import type { House, ListingFormData } from '@/views/houses/houses.types'
+import { getHouses, getHouse, createHouse, deleteHouse, uploadImage, updateHouse } from '@/api/houses'
 import type { RequestMethod } from '@/utils/fetchClient'
 import { useHousesStore } from '@/stores/houses'
+
+type Payload = [ListingFormData, FormData | null]
 
 export default function useHouseCrud() {
   const housesStore = useHousesStore()
@@ -13,7 +15,7 @@ export default function useHouseCrud() {
   async function dataOperation(
     type: RequestMethod,
     id: number | null,
-    payload?: Array<any>
+    payload?: Payload
   ) {
     loading.value = true
     error.value = null
@@ -29,18 +31,26 @@ export default function useHouseCrud() {
           housesStore.houses = await getHouses()
           break
 
-        case 'POST': {
-          if (payload && payload.length > 0) {
-            const newHouse: House = await createHouse(payload[0])
+        case 'POST':
+          if (payload) {
+            const newHouse = await createHouse(payload[0])
 
             if (newHouse) {
               await uploadImage(newHouse.id, payload[1])
               house.value = newHouse
             }
           }
-
           break
-        }
+
+        case 'PATCH':
+          if (id && payload) {
+            await updateHouse(id, payload[0])
+
+            if (payload[1]) {
+              await uploadImage(id, payload[1])
+            }
+          }
+          break
 
         case 'DELETE':
           if (id) {
