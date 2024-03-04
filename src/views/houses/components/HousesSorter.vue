@@ -1,6 +1,6 @@
 <template>
   <div class="sort-container" role="group" aria-label="Sort Houses">
-    <template v-for="{ value, label } in sortByValues" :key="value">
+    <template v-for="{ value, label } in listingSortOptions" :key="value">
       <CustomButton
         :custom-class="`sort-by-${value}`"
         :is-active="$route.query.sort === value"
@@ -16,7 +16,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
 import { housesRouteNames } from '@/views/houses/houses.routes'
-import { sortByValues } from '@/views/houses/houses.constants'
+import { listingSortOptions } from '../houses.constants'
 import type { SortBy } from '@/views/houses/houses.enums'
 import CustomButton from '@/components/CustomButton.vue'
 

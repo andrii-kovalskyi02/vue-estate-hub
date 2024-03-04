@@ -14,7 +14,7 @@
       <div class="card__info-wrapper">
         <div class="card__main-info-wrapper">
           <h2 className="card__title">{{ cardTitle }}</h2>
-          <h3 className="card__price">&euro; {{ formatNumber(price) }}</h3>
+          <h3 className="card__price">&euro; {{ formatNumberForUserLocale(price) }}</h3>
           <h3 className="card__address">{{ cardAddress }}</h3>
         </div>
 
@@ -55,7 +55,7 @@ import type { House } from '@/views/houses/houses.types'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
 import { addDashes } from '@/utils/addDashes'
-import { formatNumber } from '@/utils/formatNumber'
+import { formatNumberForUserLocale } from '@/utils/formatNumberForUserLocale'
 import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
 

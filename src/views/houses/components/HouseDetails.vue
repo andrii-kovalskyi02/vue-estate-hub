@@ -25,7 +25,7 @@
             <div className="house__specs-icon">
               <TheIcon type="price" />
             </div>
-            <h5 className="house__specs-value">{{ formatNumber(price) }}</h5>
+            <h5 className="house__specs-value">{{ formatNumberForUserLocale(price) }}</h5>
           </div>
           <div className="house__specs">
             <div className="house__specs-icon">
@@ -71,7 +71,7 @@
 import { computed } from 'vue'
 import type { House } from '@/views/houses/houses.types'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
-import { formatNumber } from '@/utils/formatNumber'
+import { formatNumberForUserLocale } from '@/utils/formatNumberForUserLocale'
 import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
@@ -111,8 +111,17 @@ const houseAddress = computed(() => `${location.zip} ${location.city}`)
 
 <style scoped lang="scss">
 .house {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+  // max-width: 710px;
   background-color: $background-color-2;
   box-shadow: $primaryShadowBox;
+
+  @include onDesktop {
+    max-width: 710px;
+  }
 
   &__img {
     display: block;

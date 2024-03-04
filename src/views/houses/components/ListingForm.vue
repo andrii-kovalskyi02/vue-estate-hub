@@ -46,7 +46,7 @@
       </div>
       <div class="listing__form-group">
         <BaseInput
-          v-model.trim="formData.numberAddition"
+          v-model.trim="formData.houseNumberAddition"
           placeholder="e.g. A"
           class="listing__form-input"
           :class="{ 'listing__form-input--error': v$.formData.numberAddition.$error }"
@@ -190,7 +190,7 @@
       </div>
       <div class="listing__form-group">
         <TheSelect
-          :options="garageOptions"
+          :options="garageSelectOptions"
           :option="optionLabel"
           @option-change="(option) => (formData.hasGarage = option)"
           label="Garage*"
@@ -292,12 +292,12 @@
         <template v-else>{{ submitButtonText }}</template>
       </CustomButton>
     </div>
-    <ErrorNotification v-if="error" :error-message="ErrorMessages.ErrorSubmittingForm" />
+    <SubmissionErrorModal :is-modal-open="isModalOpen" :submit-again="handleSubmit" @close="closeModal" />
   </form>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watchEffect } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { minLength, maxLength, helpers, numeric, minValue, maxValue } from '@vuelidate/validators'
 import CustomButton from '@/components/CustomButton.vue'
@@ -307,15 +307,14 @@ import { requiredMessage } from '@/validators/validators'
 import BaseTextarea from '@/components/BaseTextarea.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import { useRouter } from 'vue-router'
-import ErrorNotification from '@/components/ErrorNotification.vue'
-import { ErrorMessages } from '@/views/houses/houses.constants'
 import { addDashes } from '@/utils/addDashes'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
 import TheSelect from '@/components/TheSelect.vue'
-import { garageOptions } from '@/utils/garageOptions'
+import { garageSelectOptions } from '../houses.constants'
 import FormValidationError from '@/components/FormValidationError.vue'
 import { housesRouteNames } from '@/views/houses/houses.routes'
 import type { ListingFormData } from '../houses.types'
+import SubmissionErrorModal from './SubmissionErrorModal.vue'
 
 const props = defineProps<{
   listingData?: ListingFormData,
@@ -335,7 +334,7 @@ const router = useRouter()
 const intialFormData = {
   streetName: '',
   houseNumber: '',
-  numberAddition: undefined,
+  houseNumberAddition: undefined,
   zip: '',
   city: '',
   price: '',
@@ -357,6 +356,8 @@ const fileInput = ref<HTMLInputElement | null>(null)
 const imgView = ref<HTMLDivElement | null>(null)
 const imgFile = ref<FormData | null>(null)
 const imgFileName = ref('')
+const isSubmitClicked = ref(false)
+const isModalOpen = ref(false)
 
 const isValidStreetName = (value: string) => /^[A-Za-z0-9\s\-']+$/.test(value)
 const isValidAddition = (value: string) => /^[A-Za-z0-9\s\-']*$/.test(value)
@@ -376,6 +377,12 @@ const isValidImgType = () => {
 
   return false
 }
+
+watchEffect(() => {
+  if (props.error && isSubmitClicked.value) {
+    isModalOpen.value = true
+  }
+})
 
 const isImagePresent = computed(() => {
   return !imgFile.value?.has('image')
@@ -532,7 +539,7 @@ const navigateToHouseRoute = () => {
           makeAddressTitle(
             formData.value.streetName,
             +formData.value.houseNumber,
-            formData.value.numberAddition
+            formData.value.houseNumberAddition
           )
         )
       }
@@ -541,6 +548,7 @@ const navigateToHouseRoute = () => {
 }
 
 const handleSubmit = async () => {
+  isSubmitClicked.value = true
   const isFormDataCorrect = await v$.value.$validate()
 
   if (isFormDataCorrect) {
@@ -561,6 +569,8 @@ const handleSubmit = async () => {
     }
   }
 }
+
+const closeModal = () => isModalOpen.value = false
 
 onMounted(() => {
   if (props.listingImage && imgView.value) {

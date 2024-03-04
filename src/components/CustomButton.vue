@@ -131,7 +131,9 @@ withDefaults(
   }
 
   &--delete-listing,
-  &--go-back {
+  &--go-back,
+  &--try-again,
+  &--close {
     width: 80%;
     height: 40px;
     border-radius: 8px;
@@ -148,7 +150,8 @@ withDefaults(
     }
   }
 
-  &--go-back {
+  &--go-back,
+  &--close {
     background-color: $secondary-color;
 
     @include hover(background-color, $secondary-color-hover);

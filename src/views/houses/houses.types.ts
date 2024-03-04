@@ -26,7 +26,7 @@ interface House {
 interface ListingFormData {
   streetName: string;
   houseNumber: string;
-  numberAddition?: string;
+  houseNumberAddition?: string;
   zip: string;
   city: string;
   price: string;
@@ -38,6 +38,11 @@ interface ListingFormData {
   description: string;
 }
 
+interface Criteria {
+  price: number;
+  street?: string;
+}
+
 type ErrorMessagesKeys = (typeof ErrorMessages)[keyof typeof ErrorMessages]
 
-export type { House, ListingFormData, ErrorMessagesKeys }
+export type { House, ListingFormData, Criteria, ErrorMessagesKeys }

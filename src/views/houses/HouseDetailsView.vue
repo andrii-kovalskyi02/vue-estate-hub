@@ -15,7 +15,16 @@
         <template v-if="error && !house">
           <ErrorNotification :error-message="ErrorMessages.ErrorFetchingData" />
         </template>
-        <HouseDetails v-else-if="house" :house="house" :is-mobile="isMobile" />
+        <div v-else-if="house" class="house-view__main-wrapper">
+          <HouseDetails :house="house" :is-mobile="isMobile" />
+          <RecommendedListings
+            v-if="suggestedListings && !isMobile"
+            :suggestedListings="suggestedListings"
+          />
+        </div>
+      </TheContainer>
+      <TheContainer v-if="suggestedListings && isMobile">
+        <RecommendedListings :suggestedListings="suggestedListings" />
       </TheContainer>
     </section>
   </template>
@@ -25,8 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { ErrorMessages } from './houses.constants'
 import useHouseCrud from '@/composables/useHouseCrud'
 import useIsMobile from '@/composables/useIsMobile'
@@ -37,22 +46,32 @@ import HouseDetails from './components/HouseDetails.vue'
 import BackButton from '@/components/BackButton.vue'
 import HouseActions from './components/HouseActions.vue'
 import { housesRouteNames } from './houses.routes'
+import { getSuggestions } from '@/utils/getSuggestions'
+import { useHousesStore } from '@/stores/houses'
+import RecommendedListings from './components/RecommendedListings.vue'
 
 const route = useRoute()
+const housesStore = useHousesStore()
 const { house, loading, error, dataOperation } = useHouseCrud()
 const { isMobile } = useIsMobile()
 
-const houseId = ref(+route.params.houseId)
+const suggestedListings = computed(() => {
+  if (house.value && housesStore.houses.length) {
+    const criteria = {
+      price: house.value.price,
+      city: house.value.location.city
+    }
 
-onBeforeRouteUpdate(async (to, from) => {
-  window.scrollTo(0, 0)
-
-  if (from.name === housesRouteNames.editListing) {
-    await dataOperation('GET', houseId.value)
+    return getSuggestions(housesStore.houses, house.value, criteria, 3)
   }
+
+  return null
 })
 
-onMounted(() => dataOperation('GET', houseId.value))
+onMounted(() => {
+  dataOperation('GET', +route.params.houseId)
+  window.scrollTo(0, 0)
+})
 </script>
 
 <style scoped lang="scss">
@@ -75,6 +94,21 @@ onMounted(() => dataOperation('GET', houseId.value))
   &__back-button-wrapper {
     @include onTablet {
       margin-bottom: 30px;
+    }
+  }
+
+  &__main-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+
+    @include onDesktop {
+      gap: 100px;
+    }
+
+    @media (min-width: 1315px) {
+      justify-content: space-between;
     }
   }
 }

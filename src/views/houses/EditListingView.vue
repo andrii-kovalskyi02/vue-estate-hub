@@ -31,7 +31,7 @@ const { location, price, size, hasGarage, rooms, constructionYear, description }
 const dataToEdit: ListingFormData = {
   streetName: location.street,
   houseNumber: location.houseNumber.toString(),
-  numberAddition: location.houseNumberAddition || undefined,
+  houseNumberAddition: location.houseNumberAddition || undefined,
   zip: location.zip,
   city: location.city,
   price: price.toString(),

@@ -22,10 +22,10 @@
             <HousesList :houses="filteredHouses" />
           </template>
           <div v-else class="houses-view__not-found-wrapper">
-            <NotFound
-              >No results found. <br />
-              Please try another keyword.</NotFound
-            >
+            <NotFound>
+              No results found. <br />
+              Please try another keyword.
+            </NotFound>
           </div>
         </template>
         <LoadingIndicator v-else-if="!error" />
@@ -34,7 +34,7 @@
     </section>
   </template>
 
-  <RouterView />
+  <RouterView :key="route.path"/>
 </template>
 
 <script setup lang="ts">
