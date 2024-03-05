@@ -45,12 +45,12 @@ const resetSearchInput = () => {
 }
 
 const applySearchQuery = debounce(
-  (query: string) => (housesStore.appliedSearchQuery = query),
+  (query: string) => (housesStore.setAppliedSearchQuery(query)),
   debounceDelay.value
 )
 
 watchEffect(() => {
-  housesStore.searchQuery = query.value
+  housesStore.setSearchQuery(query.value)
   applySearchQuery(query.value)
 
   router.push({
@@ -66,13 +66,13 @@ watch(query, (newSearchQuery) => {
   if (newSearchQuery) {
     clearTimeout(loadingTimeout.value)
 
-    housesStore.isSearchLoading = true
+    housesStore.setIsSearchLoading(true)
 
     loadingTimeout.value = setTimeout(() => {
-      housesStore.isSearchLoading = false
+      housesStore.setIsSearchLoading(false)
     }, debounceDelay.value + 100)
   } else {
-    housesStore.isSearchLoading = false
+    housesStore.setIsSearchLoading(false)
   }
 })
 

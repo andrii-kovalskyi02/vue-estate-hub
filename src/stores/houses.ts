@@ -14,13 +14,38 @@ export const useHousesStore = defineStore('houses', () => {
     dataOperation('GET', null)
   }
 
+  function setHouses(listings: House[]) {
+    houses.value = listings
+  }
+
+  function removeHouse(index: number) {
+    houses.value.splice(index, 1)
+  }
+
+  function setSearchQuery(query: string) {
+    searchQuery.value = query
+  }
+
+  function setAppliedSearchQuery(query: string) {
+    appliedSearchQuery.value = query
+  }
+
+  function setIsSearchLoading(loading: boolean) {
+    isSearchLoading.value = loading
+  }
+
   return {
     houses,
     loading,
     error,
-    fetchData,
     searchQuery,
     appliedSearchQuery,
-    isSearchLoading
+    isSearchLoading,
+    fetchData,
+    setHouses,
+    removeHouse,
+    setSearchQuery,
+    setAppliedSearchQuery,
+    setIsSearchLoading
   }
 })

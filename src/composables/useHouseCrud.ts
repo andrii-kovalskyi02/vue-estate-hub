@@ -28,7 +28,7 @@ export default function useHouseCrud() {
             break
           }
 
-          housesStore.houses = await getHouses()
+          housesStore.setHouses(await getHouses())
           break
 
         case 'POST':
@@ -56,7 +56,7 @@ export default function useHouseCrud() {
           if (id) {
             await deleteHouse(id)
             const index = housesStore.houses.findIndex(house => house.id === id)
-            housesStore.houses.splice(index, 1)
+            housesStore.removeHouse(index)
           }
           break
 
