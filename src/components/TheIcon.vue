@@ -2,7 +2,7 @@
   <span
     class="icon"
     :class="{ [`icon--${type}`]: true, [`icon--${type}-active`]: isActive }"
-    :aria-label="`${type} Icon`"
+    :aria-label="`${type} icon`"
     role="img"
   />
 </template>
@@ -132,6 +132,17 @@ withDefaults(
     width: 30px;
     height: 30px;
     background-image: url(/images/icons/ic_upload@3x.png);
+  }
+
+  &--from-a-to-z,
+  &--from-z-to-a {
+    width: 30px;
+    height: 30px;
+    background-image: url(/images/icons/ic_from-a-to-z@3x.png);
+  }
+
+  &--from-z-to-a {
+    background-image: url(/images/icons/ic_from-z-to-a@3x.png);
   }
 }
 </style>

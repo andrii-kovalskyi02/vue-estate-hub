@@ -1,4 +1,4 @@
-import type { ErrorMessages } from './houses.constants'
+import type { ErrorMessages, Order } from './houses.constants'
 
 interface House {
   id: number;
@@ -45,4 +45,6 @@ interface Criteria {
 
 type ErrorMessagesKeys = (typeof ErrorMessages)[keyof typeof ErrorMessages]
 
-export type { House, ListingFormData, Criteria, ErrorMessagesKeys }
+type OrderKeys = (typeof Order)[keyof typeof Order]
+
+export type { House, ListingFormData, Criteria, ErrorMessagesKeys, OrderKeys }

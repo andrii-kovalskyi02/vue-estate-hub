@@ -38,7 +38,8 @@ withDefaults(
   }
 
   &--sort-by-price,
-  &--sort-by-size {
+  &--sort-by-size,
+  &--sort-by-year {
     width: 50%;
     height: 40px;
     background-color: $tertiary-color-2;

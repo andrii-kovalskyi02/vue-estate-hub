@@ -1,5 +1,5 @@
 <template>
-  <template v-if="$route.name === housesRouteNames.houses">
+  <template v-if="route.name === housesRouteNames.houses">
     <section class="houses-view">
       <TheContainer>
         <div class="houses-view__create-house-container">
@@ -56,6 +56,7 @@ import type { SortBy } from './houses.enums'
 import CreateNewHouseBtn from './components/CreateNewHouseBtn.vue'
 import { housesRouteNames } from './houses.routes'
 import { ErrorMessages } from './houses.constants'
+import type { OrderKeys } from './houses.types'
 
 const route = useRoute()
 
@@ -63,7 +64,11 @@ const housesStore = useHousesStore()
 const { houses, loading, error } = storeToRefs(housesStore)
 
 const sortedHouses = computed(() => {
-  return sortHouses(houses.value, route.query.sort as SortBy)
+  return sortHouses(
+    houses.value,
+    route.query.sort as SortBy,
+    route.query.order as OrderKeys
+  )
 })
 
 const filteredHouses = computed(() => {
@@ -112,6 +117,7 @@ onMounted(() => housesStore.fetchData())
   &__filter-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 25px;
 

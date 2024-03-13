@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import type { House } from '../houses.types';
+import type { House } from '../houses.types'
 import HousesList from './HousesList.vue'
 
 defineProps<{

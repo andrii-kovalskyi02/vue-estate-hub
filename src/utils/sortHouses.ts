@@ -1,23 +1,25 @@
-import type { House } from '@/views/houses/houses.types'
+import { type OrderKeys, type House } from '@/views/houses/houses.types'
 import { SortBy } from '@/views/houses/houses.enums'
+import { Order } from '@/views/houses/houses.constants'
 
 export function sortHouses(
   houses: House[] = [],
-  sortBy: SortBy
+  sortBy: SortBy,
+  order: OrderKeys,
 ): House[] {
-  if (sortBy) {
-    return [...houses].sort((firstHouse, secondHouse) => {
-      switch (sortBy) {
-        case SortBy.Price:
-          return firstHouse.price - secondHouse.price
-        case SortBy.Size:
-          return firstHouse.size - secondHouse.size
+  const sortedHouses = [...houses].sort((firstHouse, secondHouse) => {
+    switch (sortBy) {
+      case SortBy.Price:
+        return firstHouse.price - secondHouse.price
+      case SortBy.Year:
+        return firstHouse.constructionYear - secondHouse.constructionYear
+      case SortBy.Size:
+        return firstHouse.size - secondHouse.size
 
-        default:
-          return 0
-      }
-    })
-  }
+      default:
+        return 0
+    }
+  })
 
-  return houses
+  return order === Order.DESC ? sortedHouses.reverse() : sortedHouses
 }
