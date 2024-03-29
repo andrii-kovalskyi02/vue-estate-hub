@@ -2,11 +2,7 @@
   <label v-if="label" :for="labelFor" :class="labelClass">
     {{ label }}
   </label>
-  <div
-    class="select"
-    @keyup.esc="handleEscPress"
-    v-on-click-outside="handleEscPress"
-  >
+  <div class="select" @keyup.esc="handleEscPress" v-on-click-outside="handleEscPress">
     <CustomButton
       :id="labelFor"
       :class="{ 'button--select--chosen': currentOption !== 'Select' }"
@@ -115,8 +111,9 @@ const handleEscPress = () => {
 
 <style scoped lang="scss">
 #arrow-down {
-  transition: fill 0.3s;
+  @include transition(fill);
 }
+
 .select {
   position: relative;
 
@@ -154,10 +151,10 @@ const handleEscPress = () => {
 
     &--hovered {
       background-color: $background-color-1;
+      color: $text-color-primary;
     }
 
-    @include hover(color, $text-color-primary);
-    transition: all 0.3s;
+    @include transition;
   }
 }
 </style>

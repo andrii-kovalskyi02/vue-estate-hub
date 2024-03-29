@@ -2,8 +2,7 @@
   <div className="not-found" tabindex="0">
     <div className="not-found__container">
       <img src="/images/img_empty_houses@3x.png" alt="Not Found Image" className="not-found__img" />
-
-      <h3 className="not-found__title">
+      <h3 className="not-found__title" aria-live="assertive">
         <slot />
       </h3>
     </div>

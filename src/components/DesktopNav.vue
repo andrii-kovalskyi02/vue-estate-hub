@@ -1,32 +1,23 @@
 <template>
   <nav class="nav">
     <ul className="nav__list">
-        <li class="nav__item">
-          <RouterLink
-            :to="{ name: housesRouteNames.houses }"
-            class="nav__logo-link"
-          >
-            <img
-              src="/images/img_logo_dtt@3x.png"
-              alt="DTT Logo"
-              class="nav__logo-img"
-            />
-          </RouterLink>
-        </li>
-        <li
-          v-for="{ name } in routes.slice(0, 2)"
-          :key="name"
-          class="nav__item"
+      <li class="nav__item">
+        <RouterLink :to="{ name: housesRouteNames.houses }" class="nav__logo-link">
+          <img src="/images/img_logo_dtt@3x.png" alt="DTT Logo" class="nav__logo-img" />
+        </RouterLink>
+      </li>
+      <li v-for="{ name } in routes.slice(0, 2)" :key="name" class="nav__item">
+        <RouterLink
+          :to="{ name }"
+          class="nav__link"
+          :aria-current="$route.name === name ? 'page' : null"
         >
-          <RouterLink
-            :to="{ name }"
-            class="nav__link"
-            :aria-current="$route.matched[0]?.name === name ? 'page' : null"
-          >
-            {{ name }}
-          </RouterLink>
-        </li>
+          {{ name }}
+        </RouterLink>
+      </li>
     </ul>
+
+    <FavoritesNavLink />
   </nav>
 </template>
 
@@ -34,10 +25,17 @@
 import { RouterLink } from 'vue-router'
 import { routes } from '@/router'
 import { housesRouteNames } from '@/views/houses/houses.routes'
+import FavoritesNavLink from '@/views/favorites/components/FavoritesNavLink.vue'
 </script>
 
 <style scoped lang="scss">
 .nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px $paddingDefault;
+
   &__logo-link {
     display: flex;
     align-items: center;
@@ -51,7 +49,6 @@ import { housesRouteNames } from '@/views/houses/houses.routes'
     display: flex;
     align-items: center;
     gap: 50px;
-    padding: 15px $paddingDefault;
 
     list-style-type: none;
   }

@@ -22,21 +22,18 @@ withDefaults(
 <style scoped lang="scss">
 .icon {
   display: block;
-  width: 18px;
-  height: 18px;
+  @include size(18px, 18px);
 
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
   @include onTablet {
-    width: 20px;
-    height: 20px;
+    @include size(20px, 20px);
   }
 
   &--house {
-    width: 28px;
-    height: 28px;
+    @include size(28px, 28px);
     background-image: url(/images/icons/ic_mobile_navigation_home@3x.png);
 
     &-active {
@@ -45,8 +42,7 @@ withDefaults(
   }
 
   &--about {
-    width: 28px;
-    height: 28px;
+    @include size(28px, 28px);
     background-image: url(/images/icons/ic_mobile_navigation_info@3x.png);
 
     &-active {
@@ -91,8 +87,7 @@ withDefaults(
   }
 
   &--clear-white {
-    width: 35px;
-    height: 35px;
+    @include size(35px, 35px);
     background-image: url(/images/icons/ic_clear_white@3x.png);
   }
 
@@ -129,20 +124,37 @@ withDefaults(
   }
 
   &--upload {
-    width: 30px;
-    height: 30px;
+    @include size(30px, 30px);
     background-image: url(/images/icons/ic_upload@3x.png);
   }
 
   &--from-a-to-z,
   &--from-z-to-a {
-    width: 30px;
-    height: 30px;
+    @include size(30px, 30px);
     background-image: url(/images/icons/ic_from-a-to-z@3x.png);
   }
 
   &--from-z-to-a {
     background-image: url(/images/icons/ic_from-z-to-a@3x.png);
+  }
+
+  &--favorite,
+  &--favorite-nav {
+    background-image: url(/images/icons/ic_favorite@3x.png);
+  }
+
+  &--favorite-nav {
+    @include size(28px, 28px);
+    @include hover(background-image, url(/images/icons/ic_favorite_black@3x.png));
+  }
+
+  &--favorite-mobile {
+    background-image: url(/images/icons/ic_favorite_white@3x.png);
+  }
+
+  &--favorite-filled,
+  &--favorite-nav-active {
+    background-image: url(/images/icons/ic_favorite_filled@3x.png);
   }
 }
 </style>

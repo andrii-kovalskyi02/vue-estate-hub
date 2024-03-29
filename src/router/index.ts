@@ -3,8 +3,9 @@ import { housesRouteNames, housesRoutes } from '@/views/houses/houses.routes'
 import { aboutRoutes } from '@/views/about/about.routes'
 import { SortBy } from '@/views/houses/houses.enums'
 import { Order } from '@/views/houses/houses.constants'
+import { favoritesRoutes } from '@/views/favorites/favorites.routes'
 
-export const routes = [...housesRoutes, ...aboutRoutes]
+export const routes = [...housesRoutes, ...aboutRoutes, ...favoritesRoutes]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

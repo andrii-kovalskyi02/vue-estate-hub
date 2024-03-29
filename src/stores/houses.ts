@@ -1,14 +1,20 @@
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import useHouseCrud from '@/composables/useHouseCrud'
+import useSearch from '@/composables/useSearch'
 import type { House } from '@/views/houses/houses.types'
-import { ref } from 'vue'
 
 export const useHousesStore = defineStore('houses', () => {
   const { loading, error, dataOperation } = useHouseCrud()
+  const {
+    searchQuery,
+    appliedSearchQuery,
+    isSearchLoading,
+    setSearchQuery,
+    setAppliedSearchQuery,
+    setIsSearchLoading
+  } = useSearch()
   const houses = ref<House[]>([])
-  const searchQuery = ref('')
-  const appliedSearchQuery = ref('')
-  const isSearchLoading = ref(false)
 
   function fetchData() {
     dataOperation('GET', null)
@@ -20,18 +26,6 @@ export const useHousesStore = defineStore('houses', () => {
 
   function removeHouse(index: number) {
     houses.value.splice(index, 1)
-  }
-
-  function setSearchQuery(query: string) {
-    searchQuery.value = query
-  }
-
-  function setAppliedSearchQuery(query: string) {
-    appliedSearchQuery.value = query
-  }
-
-  function setIsSearchLoading(loading: boolean) {
-    isSearchLoading.value = loading
   }
 
   return {

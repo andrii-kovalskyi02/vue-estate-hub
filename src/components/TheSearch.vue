@@ -27,13 +27,16 @@
 <script setup lang="ts">
 import { onUnmounted, ref, watch, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { housesRouteNames } from '@/views/houses/houses.routes'
-import { useHousesStore } from '@/stores/houses'
 import debounce from 'lodash.debounce'
 import TheIcon from './TheIcon.vue'
 import CustomButton from './CustomButton.vue'
 
-const housesStore = useHousesStore()
+const props = defineProps<{
+  setSearchQuery: (query: string) => void
+  setAppliedSearchQuery: (query: string) => void
+  setIsSearchLoading: (loading: boolean) => void
+}>()
+
 const router = useRouter()
 const route = useRoute()
 const query = ref('')
@@ -45,16 +48,16 @@ const resetSearchInput = () => {
 }
 
 const applySearchQuery = debounce(
-  (query: string) => (housesStore.setAppliedSearchQuery(query)),
+  (query: string) => props.setAppliedSearchQuery(query),
   debounceDelay.value
 )
 
 watchEffect(() => {
-  housesStore.setSearchQuery(query.value)
+  props.setSearchQuery(query.value)
   applySearchQuery(query.value)
 
   router.push({
-    name: housesRouteNames.houses,
+    name: route.name as string,
     query: {
       ...route.query,
       query: query.value ? query.value : undefined
@@ -66,13 +69,13 @@ watch(query, (newSearchQuery) => {
   if (newSearchQuery) {
     clearTimeout(loadingTimeout.value)
 
-    housesStore.setIsSearchLoading(true)
+    props.setIsSearchLoading(true)
 
     loadingTimeout.value = setTimeout(() => {
-      housesStore.setIsSearchLoading(false)
+      props.setIsSearchLoading(false)
     }, debounceDelay.value + 100)
   } else {
-    housesStore.setIsSearchLoading(false)
+    props.setIsSearchLoading(false)
   }
 })
 
@@ -84,10 +87,6 @@ onUnmounted(() => clearTimeout(loadingTimeout.value))
   position: relative;
   display: flex;
   align-items: center;
-
-  @include onTablet {
-    width: 38%;
-  }
 
   &__search-icon {
     position: absolute;

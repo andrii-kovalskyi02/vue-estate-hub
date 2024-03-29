@@ -1,7 +1,7 @@
 <template>
   <div class="recommended-listings">
     <h1 class="recommended-listings__title" tabindex="0">Recommended for you</h1>
-    <HousesList :houses="suggestedListings"/>
+    <HousesList :houses="suggestedListings" />
   </div>
 </template>
 

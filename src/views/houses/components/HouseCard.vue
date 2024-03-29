@@ -41,8 +41,8 @@
       </div>
     </RouterLink>
 
-    <div v-if="madeByMe" class="card__actions-wrapper">
-      <HouseActions :listingId="id" :slug="dashedSlug" />
+    <div class="card__actions-wrapper">
+      <HouseActions :listing="house" :slug="dashedSlug" />
     </div>
   </section>
 </template>
@@ -63,7 +63,7 @@ const props = defineProps<{
   house: House
 }>()
 
-const { id, image, price, rooms, size, location, madeByMe } = props.house
+const { id, image, price, rooms, size, location } = props.house
 
 const cardTitle = computed(() => {
   return makeAddressTitle(
@@ -90,6 +90,7 @@ const dashedSlug = computed(() => addDashes(cardTitle.value))
   @include hover(box-shadow, $primaryHoverShadowBox);
 
   @include onTablet {
+    gap: 20px;
     padding: 20px;
   }
 
@@ -99,10 +100,15 @@ const dashedSlug = computed(() => addDashes(cardTitle.value))
   }
 
   &__actions-wrapper {
-    padding: 10px 10px 0 0;
+    padding-top: 4px;
+
+    @media (min-width: 400px) {
+      padding-top: 10px;
+      padding-right: 12px;
+    }
 
     @include onTablet {
-      padding-top: 15px 15px 0 0;
+      padding-top: 21px;
     }
   }
 

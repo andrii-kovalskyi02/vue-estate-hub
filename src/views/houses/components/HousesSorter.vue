@@ -2,7 +2,8 @@
   <div class="sort-houses" role="group" aria-label="Sort Houses">
     <div class="sort-houses__options">
       <CustomButton
-        v-for="{ value, label } in listingSortOptions" :key="value"
+        v-for="{ value, label } in listingSortOptions"
+        :key="value"
         :custom-class="`sort-by-${value}`"
         :is-active="$route.query.sort === value"
         :aria-label="`Sort by ${label}`"
@@ -15,7 +16,7 @@
       :to="{ query: { ...$route.query, order: nextSortOrder } }"
       :aria-label="sortHousesOrderAriaLabel"
     >
-      <TheIcon :type="isOrderAscending ? 'from-a-to-z' : 'from-z-to-a'"/>
+      <TheIcon :type="isOrderAscending ? 'from-a-to-z' : 'from-z-to-a'" />
     </RouterLink>
   </div>
 </template>
@@ -42,7 +43,7 @@ const isOrderAscending = computed(() => {
 })
 
 const sortHousesOrderAriaLabel = computed(() => {
-  return `Sort houses in ${isOrderAscending.value ? 'ascending' : 'descending' } order`
+  return `Sort houses in ${isOrderAscending.value ? 'ascending' : 'descending'} order`
 })
 
 const nextSortOrder = computed(() => {
@@ -60,6 +61,5 @@ const nextSortOrder = computed(() => {
     display: flex;
     flex-grow: 1;
   }
-
 }
 </style>

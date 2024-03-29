@@ -1,10 +1,5 @@
 <template>
-  <form
-    name="listing-form"
-    class="listing"
-    @submit.prevent="handleSubmit"
-    novalidate
-  >
+  <form name="listing-form" class="listing" @submit.prevent="handleSubmit" novalidate>
     <div class="listing__form-group">
       <BaseInput
         v-model="formData.streetName"
@@ -292,7 +287,11 @@
         <template v-else>{{ submitButtonText }}</template>
       </CustomButton>
     </div>
-    <SubmissionErrorModal :is-modal-open="isModalOpen" :submit-again="handleSubmit" @close="closeModal" />
+    <SubmissionErrorModal
+      :is-modal-open="isModalOpen"
+      :submit-again="handleSubmit"
+      @close="closeModal"
+    />
   </form>
 </template>
 
@@ -317,21 +316,21 @@ import type { ListingFormData } from '../houses.types'
 import SubmissionErrorModal from './SubmissionErrorModal.vue'
 
 const props = defineProps<{
-  listingData?: ListingFormData,
-  listingImage?: string,
-  listingId: number | undefined,
-  loading: boolean,
-  error: any,
+  listingData?: ListingFormData
+  listingImage?: string
+  listingId: number | undefined
+  loading: boolean
+  error: any
   submitButtonText: string
 }>()
 
 const emit = defineEmits<{
-  'submit': [formData: ListingFormData, imgFile: FormData | null, redirect: () => void]
+  submit: [formData: ListingFormData, imgFile: FormData | null, redirect: () => void]
 }>()
 
 const router = useRouter()
 
-const intialFormData = {
+const initialFormData = {
   streetName: '',
   houseNumber: '',
   houseNumberAddition: undefined,
@@ -347,9 +346,7 @@ const intialFormData = {
 }
 
 const formData = ref<ListingFormData>(
-  props.listingData
-    ? { ...props.listingData }
-    : intialFormData
+  props.listingData ? { ...props.listingData } : initialFormData
 )
 
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -388,9 +385,8 @@ const isImagePresent = computed(() => {
   return !imgFile.value?.has('image')
 })
 
-const optionLabel = computed(() => props.listingData
-  ? (props.listingData?.hasGarage ? 'Yes' : 'No')
-  : undefined
+const optionLabel = computed(() =>
+  props.listingData ? (props.listingData?.hasGarage ? 'Yes' : 'No') : undefined
 )
 
 const currentYear = computed(() => new Date().getFullYear())
@@ -412,10 +408,7 @@ const rules = computed(() => {
         required: requiredMessage,
         minLength: minLength(4),
         maxLength: maxLength(45),
-        validStreetName: helpers.withMessage(
-          'Please enter a valid street name',
-          isValidStreetName
-        )
+        validStreetName: helpers.withMessage('Please enter a valid street name', isValidStreetName)
       },
       houseNumber: {
         required: requiredMessage,
@@ -425,10 +418,7 @@ const rules = computed(() => {
       },
       numberAddition: {
         maxLength: maxLength(6),
-        validAddition: helpers.withMessage(
-          'Please enter a valid addition',
-          isValidAddition
-        ),
+        validAddition: helpers.withMessage('Please enter a valid addition', isValidAddition)
       },
       zip: {
         required: requiredMessage,
@@ -439,10 +429,7 @@ const rules = computed(() => {
       },
       city: {
         required: requiredMessage,
-        validCity: helpers.withMessage(
-          'Please enter a valid city name',
-          isValidCity
-        )
+        validCity: helpers.withMessage('Please enter a valid city name', isValidCity)
       },
       price: {
         required: requiredMessage,
@@ -570,7 +557,7 @@ const handleSubmit = async () => {
   }
 }
 
-const closeModal = () => isModalOpen.value = false
+const closeModal = () => (isModalOpen.value = false)
 
 onMounted(() => {
   if (props.listingImage && imgView.value) {
@@ -677,7 +664,7 @@ onMounted(() => {
       }
     }
 
-    transition: all 0.3s;
+    @include transition;
   }
 
   &__form-submit-btn-wrapper {

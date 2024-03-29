@@ -1,13 +1,7 @@
 <template>
-  <teleport to="body">
+  <teleport to="#modals">
     <transition name="modal-animation">
-      <div
-        v-show="isModalOpen"
-        ref="modalRef"
-        class="modal"
-        role="dialog"
-        aria-modal="true"
-      >
+      <div v-show="isModalOpen" ref="modalRef" class="modal" role="dialog" aria-modal="true">
         <transition name="modal-content-animation">
           <div
             v-show="isModalOpen"
@@ -21,7 +15,7 @@
         </transition>
       </div>
     </transition>
-  </teleport> 
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -30,11 +24,11 @@ import { useFocusTrap } from '@vueuse/integrations/useFocusTrap.mjs'
 import { vOnClickOutside } from '@vueuse/components'
 
 const props = defineProps<{
-  isModalOpen: boolean,
+  isModalOpen: boolean
 }>()
 
 const emit = defineEmits<{
-  'close': [null]
+  close: [null]
 }>()
 
 const modalRef = ref<HTMLDivElement | null>(null)
@@ -45,19 +39,22 @@ const close = () => {
 }
 
 const handleKeyUp = (event: KeyboardEvent) => {
-  if (event.key === "Escape") {
+  if (event.key === 'Escape') {
     close()
   }
 }
 
-watch(() => props.isModalOpen, async () => {
-  if (props.isModalOpen) {
-    await nextTick()
-    activate()
-  } else {
-    deactivate()
+watch(
+  () => props.isModalOpen,
+  async () => {
+    if (props.isModalOpen) {
+      await nextTick()
+      activate()
+    } else {
+      deactivate()
+    }
   }
-})
+)
 
 onMounted(() => {
   document.addEventListener('keyup', handleKeyUp)
@@ -71,7 +68,7 @@ onUnmounted(() => {
 .modal-animation {
   &-enter-active,
   &-leave-active {
-    transition: opacity 0.3s cubic-bezier(0.3, 0.1, 0.3, 1);
+    @include transition(opacity, $_timing-function: cubic-bezier(0.3, 0.1, 0.3, 1));
   }
 
   &-enter-from,
@@ -83,7 +80,7 @@ onUnmounted(() => {
 .modal-content-animation {
   &-enter-active,
   &-leave-active {
-    transition: all 0.3s cubic-bezier(0.3, 0.1, 0.3, 1);
+    @include transition(all, $_timing-function: cubic-bezier(0.3, 0.1, 0.3, 1));
   }
 
   &-enter-from {

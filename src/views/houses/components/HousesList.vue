@@ -1,11 +1,6 @@
 <template>
-  <TransitionGroup name="list" tag="ul" class="housesList" role="list">
-    <li
-      v-for="house in houses"
-      :key="house.id"
-      class="housesList__item"
-      role="listItem"
-    >
+  <TransitionGroup name="list" tag="ul" class="houses-list" role="list">
+    <li v-for="house in houses" :key="house.id" class="houses-list__item" role="listItem">
       <HouseCard :house="house" />
     </li>
   </TransitionGroup>
@@ -21,7 +16,7 @@ defineProps<{
 </script>
 
 <style lang="scss" scoped>
-.housesList {
+.houses-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -37,7 +32,7 @@ defineProps<{
 .list-move,
 .list-enter-active,
 .list-leave-active {
-  transition: all 0.5s ease;
+  @include transition($_duration: 0.5s);
 }
 .list-enter-from,
 .list-leave-to {

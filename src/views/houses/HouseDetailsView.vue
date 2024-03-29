@@ -10,7 +10,7 @@
               :go-to-main-page="true"
             />
           </div>
-          <HouseActions v-if="isMobile && !error && house?.madeByMe" :is-mobile="isMobile" />
+          <HouseActions v-if="isMobile && !error && house" :listing="house" :is-mobile="isMobile" />
         </div>
         <template v-if="error && !house">
           <ErrorNotification :error-message="ErrorMessages.ErrorFetchingData" />
@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { onBeforeRouteUpdate, useRoute } from 'vue-router'
 import { ErrorMessages } from './houses.constants'
 import useHouseCrud from '@/composables/useHouseCrud'
 import useIsMobile from '@/composables/useIsMobile'
@@ -66,6 +66,10 @@ const suggestedListings = computed(() => {
   }
 
   return null
+})
+
+onBeforeRouteUpdate((to, from) => {
+  console.log(from)
 })
 
 onMounted(() => {

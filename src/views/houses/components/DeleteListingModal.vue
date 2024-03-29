@@ -5,7 +5,7 @@
         <h1 class="modal-delete-listing__title">Delete listing</h1>
         <h2 class="modal-delete-listing__subtitle">
           Are you shure you want to delete this listing?
-          <br>
+          <br />
           This action cannot be undone.
         </h2>
       </div>
@@ -14,16 +14,14 @@
           <LoadingIndicator v-if="loading" />
           <template v-else>Yes, delete</template>
         </CustomButton>
-        <CustomButton customClass="go-back" @click="close">
-          Go back
-        </CustomButton>
+        <CustomButton customClass="go-back" @click="close"> Go back </CustomButton>
       </div>
     </div>
   </TheModal>
 </template>
 
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import TheModal from '@/components/TheModal.vue'
 import CustomButton from '@/components/CustomButton.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
@@ -32,24 +30,19 @@ import { housesRouteNames } from '../houses.routes'
 
 const props = defineProps<{
   isModalOpen: boolean
-  id?: number
+  listingId: number
 }>()
 
 const emit = defineEmits<{
-  'close': [null]
+  close: [null]
 }>()
 
 const router = useRouter()
-const route = useRoute()
 const { loading, dataOperation } = useHouseCrud()
 
-const listingId = +route.params.houseId || props.id
-
 const handleRemove = () => {
-  if (listingId) {
-    dataOperation('DELETE', listingId)
-    router.replace({ name: housesRouteNames.houses })
-  }
+  dataOperation('DELETE', props.listingId)
+  router.replace({ name: housesRouteNames.houses })
 }
 
 const close = () => {

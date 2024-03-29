@@ -11,7 +11,13 @@
           </div>
         </div>
         <div v-if="!error && houses.length" class="houses-view__filter-container">
-          <TheSearch />
+          <div class="houses-view__search-container">
+            <TheSearch
+              :set-search-query="housesStore.setSearchQuery"
+              :set-applied-search-query="housesStore.setAppliedSearchQuery"
+              :set-is-search-loading="housesStore.setIsSearchLoading"
+            />
+          </div>
           <HousesSorter />
         </div>
         <template v-if="!housesStore.isSearchLoading && !loading && !error">
@@ -34,7 +40,7 @@
     </section>
   </template>
 
-  <RouterView :key="route.path"/>
+  <RouterView :key="route.path" />
 </template>
 
 <script setup lang="ts">
@@ -64,11 +70,7 @@ const housesStore = useHousesStore()
 const { houses, loading, error } = storeToRefs(housesStore)
 
 const sortedHouses = computed(() => {
-  return sortHouses(
-    houses.value,
-    route.query.sort as SortBy,
-    route.query.order as OrderKeys
-  )
+  return sortHouses(houses.value, route.query.sort as SortBy, route.query.order as OrderKeys)
 })
 
 const filteredHouses = computed(() => {
@@ -125,6 +127,12 @@ onMounted(() => housesStore.fetchData())
       flex-direction: row;
       justify-content: space-between;
       margin-bottom: 35px;
+    }
+  }
+
+  &__search-container {
+    @include onTablet {
+      width: 38%;
     }
   }
 

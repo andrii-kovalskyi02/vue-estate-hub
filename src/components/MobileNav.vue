@@ -5,13 +5,13 @@
         <RouterLink
           :to="{ name }"
           class="nav__link"
-          :aria-current="$route.matched[0]?.name === name ? 'page' : null"
+          :aria-current="$route.name === name ? 'page' : null"
         >
-          <TheIcon
-            :type="getIconType(name as string)"
-            :is-active="$route.matched[0]?.name === name"
-          />
+          <TheIcon :type="getIconType(name as string)" :is-active="$route.name === name" />
         </RouterLink>
+      </li>
+      <li class="nav__item">
+        <FavoritesNavLink />
       </li>
     </ul>
   </nav>
@@ -22,6 +22,7 @@ import { routes } from '@/router'
 import { RouterLink } from 'vue-router'
 import { housesRouteNames } from '@/views/houses/houses.routes'
 import TheIcon from './TheIcon.vue'
+import FavoritesNavLink from '@/views/favorites/components/FavoritesNavLink.vue'
 
 const getIconType = (name: string) => {
   return name === housesRouteNames.houses ? 'house' : name.toLowerCase()

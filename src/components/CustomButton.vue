@@ -127,8 +127,6 @@ withDefaults(
       border-color: $primary-color;
       color: $primary-color;
     }
-
-    transition: fill 0.3s;
   }
 
   &--delete-listing,

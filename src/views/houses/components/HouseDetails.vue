@@ -1,16 +1,12 @@
 <template>
   <article class="house" tabindex="0">
     <div class="house__img-container">
-      <img
-        :src="image"
-        :alt="`${houseTitle} House Image`"
-        className="house__img"
-      />
+      <img :src="image" :alt="`${houseTitle} House Image`" className="house__img" />
     </div>
     <div class="house__info-container">
       <div class="house__base-line">
         <h1 className="house__title">{{ houseTitle }}</h1>
-        <HouseActions v-if="!isMobile && madeByMe" />
+        <HouseActions v-if="!isMobile" :listing="house" />
       </div>
 
       <div className="house__specs-container">
@@ -86,17 +82,8 @@ const props = withDefaults(
   }
 )
 
-const {
-  image,
-  price,
-  rooms,
-  size,
-  description,
-  location,
-  constructionYear,
-  hasGarage,
-  madeByMe
-} = props.house
+const { image, price, rooms, size, description, location, constructionYear, hasGarage } =
+  props.house
 
 const houseTitle = computed(() => {
   return makeAddressTitle(
@@ -115,12 +102,11 @@ const houseAddress = computed(() => `${location.zip} ${location.city}`)
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  // max-width: 710px;
   background-color: $background-color-2;
   box-shadow: $primaryShadowBox;
 
   @include onDesktop {
-    max-width: 710px;
+    max-width: 680px;
   }
 
   &__img {

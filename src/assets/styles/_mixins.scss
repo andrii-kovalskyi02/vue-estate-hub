@@ -1,9 +1,23 @@
 @mixin hover($_property, $_toValue) {
-  transition: #{$_property} 0.3s;
+  transition: #{$_property} $transition-duration;
 
   &:hover {
     #{$_property}: $_toValue;
   }
+}
+
+@mixin transition(
+  $_property: all,
+  $_duration: $transition-duration,
+  $_timing-function: ease,
+  $_delay: 0s
+) {
+  transition: $_property $_duration $_timing-function $_delay;
+}
+
+@mixin size($_width, $_height) {
+  width: $_width;
+  height: $_height;
 }
 
 @mixin flexCenter() {
