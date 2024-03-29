@@ -1,7 +1,7 @@
 import type { App, Directive } from 'vue'
 import { enableBodyScroll, disableBodyScroll } from 'body-scroll-lock'
 
-const vScrolLock: Directive = {
+const vScrollLock: Directive = {
   mounted(el, binding) {
     if (binding.value) {
       disableBodyScroll(el)
@@ -17,10 +17,10 @@ const vScrolLock: Directive = {
   unmounted(el) {
     enableBodyScroll(el)
   }
-};
+}
 
 export default {
   install: (app: App) => {
-    app.directive('scroll-lock', vScrolLock)
+    app.directive('scroll-lock', vScrollLock)
   }
 }

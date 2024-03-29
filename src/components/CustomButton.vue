@@ -80,7 +80,8 @@ withDefaults(
   }
 
   &--create-new,
-  &--submit {
+  &--submit,
+  &--go-home {
     gap: 15px;
     width: 220px;
     height: 50px;

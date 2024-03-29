@@ -1,8 +1,5 @@
 <template>
-  <ListingTemplate
-    listing-title="Edit listing"
-    back-button-title="Back"
-  >
+  <ListingTemplate listing-title="Edit listing" back-button-title="Back">
     <ListingForm
       :listing-data="dataToEdit"
       :listing-image="houseData.image"
@@ -20,10 +17,13 @@ import useHouseCrud from '@/composables/useHouseCrud'
 import ListingTemplate from './components/ListingTemplate.vue'
 import ListingForm from './components/ListingForm.vue'
 import type { House, ListingFormData } from './houses.types'
+import useDynamicTitle from '@/composables/useDynamicTitle'
 
 const props = defineProps<{
   houseData: House
 }>()
+
+useDynamicTitle()
 
 const { loading, error, dataOperation } = useHouseCrud()
 const { location, price, size, hasGarage, rooms, constructionYear, description } = props.houseData
@@ -49,7 +49,7 @@ const handleSubmit = async (
   redirect: () => void
 ) => {
   let key: keyof ListingFormData
-  const changes= new Map<typeof key, any>()
+  const changes = new Map<typeof key, any>()
 
   for (key in dataToEdit) {
     if (dataToEdit[key] !== formData[key]) {

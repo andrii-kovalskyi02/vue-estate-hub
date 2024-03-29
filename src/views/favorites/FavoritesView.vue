@@ -64,6 +64,10 @@ import { favoritesRouteNames } from './favorites.routes'
 import { filterHouses } from '@/utils/filterHouses'
 import HousesList from '../houses/components/HousesList.vue'
 import useFavoritesCountDescription from '@/composables/useFavoritesCountDescription'
+import useDynamicTitle from '@/composables/useDynamicTitle'
+// import { useHead } from '@unhead/vue'
+
+useDynamicTitle()
 
 const { description, favoritesStore } = useFavoritesCountDescription()
 const { favorites, appliedSearchQuery } = storeToRefs(favoritesStore)

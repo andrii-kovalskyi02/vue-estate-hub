@@ -71,6 +71,7 @@ import { formatNumberForUserLocale } from '@/utils/formatNumberForUserLocale'
 import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
+import useDynamicTitle from '@/composables/useDynamicTitle'
 
 const props = withDefaults(
   defineProps<{
@@ -94,6 +95,8 @@ const houseTitle = computed(() => {
 })
 
 const houseAddress = computed(() => `${location.zip} ${location.city}`)
+
+useDynamicTitle(houseTitle.value)
 </script>
 
 <style scoped lang="scss">

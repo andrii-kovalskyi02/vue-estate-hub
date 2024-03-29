@@ -36,6 +36,9 @@
 
 <script setup lang="ts">
 import TheContainer from '@/components/TheContainer.vue'
+import useDynamicTitle from '@/composables/useDynamicTitle'
+
+useDynamicTitle()
 </script>
 
 <style scoped lang="scss">

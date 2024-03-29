@@ -22,15 +22,27 @@ export const housesRoutes: RouteRecordRaw[] = [
           {
             name: housesRouteNames.editListing,
             path: 'edit',
-            component: () => import('@/views/houses/EditListingView.vue')
+            component: () => import('@/views/houses/EditListingView.vue'),
+            meta: {
+              pageTitle: 'Edit Listing'
+            }
           }
-        ]
+        ],
+        meta: {
+          pageTitle: 'Listing'
+        }
       },
       {
         name: housesRouteNames.newListing,
         path: 'new-listing',
-        component: () => import('@/views/houses/NewListingView.vue')
+        component: () => import('@/views/houses/NewListingView.vue'),
+        meta: {
+          pageTitle: 'New Listing'
+        }
       }
-    ]
+    ],
+    meta: {
+      pageTitle: 'Listings'
+    }
   }
 ]

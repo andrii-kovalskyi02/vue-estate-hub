@@ -63,6 +63,9 @@ import CreateNewHouseBtn from './components/CreateNewHouseBtn.vue'
 import { housesRouteNames } from './houses.routes'
 import { ErrorMessages } from './houses.constants'
 import type { OrderKeys } from './houses.types'
+import useDynamicTitle from '@/composables/useDynamicTitle'
+
+useDynamicTitle()
 
 const route = useRoute()
 

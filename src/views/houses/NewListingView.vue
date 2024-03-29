@@ -1,8 +1,5 @@
 <template>
-  <ListingTemplate
-    listing-title="Create new listing"
-    back-button-title="Back to overview"
-  >
+  <ListingTemplate listing-title="Create new listing" back-button-title="Back to overview">
     <ListingForm
       :listingId="house?.id"
       :loading="loading"
@@ -18,6 +15,9 @@ import useHouseCrud from '@/composables/useHouseCrud'
 import ListingTemplate from './components/ListingTemplate.vue'
 import ListingForm from './components/ListingForm.vue'
 import type { ListingFormData } from './houses.types'
+import useDynamicTitle from '@/composables/useDynamicTitle'
+
+useDynamicTitle()
 
 const { house, loading, error, dataOperation } = useHouseCrud()
 
@@ -29,7 +29,6 @@ const handleSubmit = async (
   await dataOperation('POST', null, [formData, imgFile])
   redirect()
 }
-
 </script>
 
 <style scoped lang="scss"></style>

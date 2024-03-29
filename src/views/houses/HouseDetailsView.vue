@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
-import { onBeforeRouteUpdate, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { ErrorMessages } from './houses.constants'
 import useHouseCrud from '@/composables/useHouseCrud'
 import useIsMobile from '@/composables/useIsMobile'
@@ -66,10 +66,6 @@ const suggestedListings = computed(() => {
   }
 
   return null
-})
-
-onBeforeRouteUpdate((to, from) => {
-  console.log(from)
 })
 
 onMounted(() => {
