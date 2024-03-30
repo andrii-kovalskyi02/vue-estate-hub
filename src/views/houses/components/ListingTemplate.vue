@@ -4,7 +4,8 @@
       <TheContainer>
         <div class="listing-view__top-elements-container">
           <div class="listing-view__back-button-wrapper">
-            <BackButton :label="isMobile ? '' : backButtonTitle" />
+            <BackToOverviewBtn v-if="showOverviewButton" :is-mobile="isMobile" />
+            <BackButton v-else :is-mobile="isMobile" />
           </div>
           <h1 class="listing-view__title">{{ listingTitle }}</h1>
         </div>
@@ -16,13 +17,17 @@
 
 <script setup lang="ts">
 import TheContainer from '@/components/TheContainer.vue'
-import BackButton from '@/components/BackButton.vue'
 import useIsMobile from '@/composables/useIsMobile'
+import BackButton from '@/components/BackButton.vue'
+import BackToOverviewBtn from '@/components/BackToOverviewBtn.vue'
 
-defineProps<{
-  listingTitle: string
-  backButtonTitle: string
-}>()
+withDefaults(
+  defineProps<{
+    listingTitle: string
+    showOverviewButton: boolean
+  }>(),
+  { showOverviewButton: () => false }
+)
 
 const { isMobile } = useIsMobile()
 </script>

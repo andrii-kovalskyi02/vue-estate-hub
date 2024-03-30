@@ -1,5 +1,5 @@
 <template>
-  <ListingTemplate listing-title="Edit listing" back-button-title="Back">
+  <ListingTemplate listing-title="Edit listing">
     <ListingForm
       :listing-data="dataToEdit"
       :listing-image="houseData.image"
@@ -64,5 +64,3 @@ const handleSubmit = async (
   redirect()
 }
 </script>
-
-<style scoped lang="scss"></style>

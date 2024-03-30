@@ -4,11 +4,7 @@
       <TheContainer :class="{ 'container--house-details-mobile': isMobile }">
         <div class="house-view__top-actions">
           <div class="house-view__back-button-wrapper">
-            <BackButton
-              :label="isMobile ? '' : 'Back to overview'"
-              :is-mobile="isMobile"
-              :go-to-main-page="true"
-            />
+            <BackToOverviewBtn :is-mobile="isMobile" :is-back-white="isMobile" />
           </div>
           <HouseActions v-if="isMobile && !error && house" :listing="house" :is-mobile="isMobile" />
         </div>
@@ -43,12 +39,12 @@ import TheContainer from '@/components/TheContainer.vue'
 import ErrorNotification from '@/components/ErrorNotification.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import HouseDetails from './components/HouseDetails.vue'
-import BackButton from '@/components/BackButton.vue'
 import HouseActions from './components/HouseActions.vue'
 import { housesRouteNames } from './houses.routes'
 import { getSuggestions } from '@/utils/getSuggestions'
 import { useHousesStore } from '@/stores/houses'
 import RecommendedListings from './components/RecommendedListings.vue'
+import BackToOverviewBtn from '@/components/BackToOverviewBtn.vue'
 
 const route = useRoute()
 const housesStore = useHousesStore()

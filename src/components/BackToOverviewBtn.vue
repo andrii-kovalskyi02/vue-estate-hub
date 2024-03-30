@@ -1,13 +1,15 @@
 <template>
-  <CustomButton custom-class="back" @click="$router.back()" aria-label="Go Back to Previous Page">
+  <CustomButton custom-class="back" @click="goToMainPage" aria-label="Back to Overview">
     <TheIcon :type="isBackWhite ? 'back-mobile' : 'back'" />
-    {{ isMobile ? '' : 'Back' }}
+    {{ isMobile ? '' : 'Back to overview' }}
   </CustomButton>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import CustomButton from './CustomButton.vue'
 import TheIcon from './TheIcon.vue'
+import { housesRouteNames } from '@/views/houses/houses.routes'
 
 withDefaults(
   defineProps<{
@@ -19,4 +21,10 @@ withDefaults(
     isBackWhite: () => false
   }
 )
+
+const router = useRouter()
+
+const goToMainPage = () => {
+  router.push({ name: housesRouteNames.houses })
+}
 </script>

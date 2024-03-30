@@ -65,7 +65,6 @@ import { filterHouses } from '@/utils/filterHouses'
 import HousesList from '../houses/components/HousesList.vue'
 import useFavoritesCountDescription from '@/composables/useFavoritesCountDescription'
 import useDynamicTitle from '@/composables/useDynamicTitle'
-// import { useHead } from '@unhead/vue'
 
 useDynamicTitle()
 

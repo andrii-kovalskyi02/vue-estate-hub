@@ -1,5 +1,5 @@
 <template>
-  <ListingTemplate listing-title="Create new listing" back-button-title="Back to overview">
+  <ListingTemplate listing-title="Create new listing" :show-overview-button="true">
     <ListingForm
       :listingId="house?.id"
       :loading="loading"

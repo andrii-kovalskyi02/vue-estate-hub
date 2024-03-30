@@ -306,8 +306,6 @@ import { requiredMessage } from '@/validators/validators'
 import BaseTextarea from '@/components/BaseTextarea.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import { useRouter } from 'vue-router'
-import { addDashes } from '@/utils/addDashes'
-import { makeAddressTitle } from '@/utils/makeAddressTitle'
 import TheSelect from '@/components/TheSelect.vue'
 import { garageSelectOptions } from '../houses.constants'
 import FormValidationError from '@/components/FormValidationError.vue'
@@ -518,17 +516,10 @@ const handleImageDragAndDrop = (event: DragEvent) => {
 
 const navigateToHouseRoute = () => {
   if (props.listingId && !props.error) {
-    router.replace({
+    router.push({
       name: housesRouteNames.house,
       params: {
-        houseId: props.listingId,
-        slug: addDashes(
-          makeAddressTitle(
-            formData.value.streetName,
-            +formData.value.houseNumber,
-            formData.value.houseNumberAddition
-          )
-        )
+        houseId: props.listingId
       }
     })
   }

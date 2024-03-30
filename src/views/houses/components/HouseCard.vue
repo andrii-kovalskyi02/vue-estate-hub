@@ -4,8 +4,7 @@
       :to="{
         name: housesRouteNames.house,
         params: {
-          houseId: id,
-          slug: dashedSlug
+          houseId: id
         }
       }"
       className="card__link"
@@ -42,7 +41,7 @@
     </RouterLink>
 
     <div class="card__actions-wrapper">
-      <HouseActions :listing="house" :slug="dashedSlug" />
+      <HouseActions :listing="house" />
     </div>
   </section>
 </template>
@@ -54,7 +53,6 @@ import { housesRouteNames } from '@/views/houses/houses.routes'
 import type { House } from '@/views/houses/houses.types'
 import { capitalizeFirstLetter } from '@/utils/capitalizeFirstLetter'
 import { makeAddressTitle } from '@/utils/makeAddressTitle'
-import { addDashes } from '@/utils/addDashes'
 import { formatNumberForUserLocale } from '@/utils/formatNumberForUserLocale'
 import TheIcon from '@/components/TheIcon.vue'
 import HouseActions from './HouseActions.vue'
@@ -74,8 +72,6 @@ const cardTitle = computed(() => {
 })
 
 const cardAddress = computed(() => `${location.zip} ${location.city}`)
-
-const dashedSlug = computed(() => addDashes(cardTitle.value))
 </script>
 
 <style scoped lang="scss">

@@ -35,7 +35,6 @@ const props = withDefaults(
   defineProps<{
     listing: House
     isMobile?: boolean
-    slug?: string
   }>(),
   {
     isMobile: () => false
@@ -67,8 +66,7 @@ const handleEditClick = () => {
   router.push({
     name: housesRouteNames.editListing,
     params: {
-      houseId: props.listing.id,
-      slug: props.slug
+      houseId: props.listing.id
     }
   })
 }
