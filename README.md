@@ -1,46 +1,74 @@
-# vue-estate-hub
+# Estate Hub
 
-This template should help get you started developing with Vue 3 in Vite.
+## Project Description
 
-## Recommended IDE Setup
+Estate Hub is a web application for house listings, providing users the ability to view a list of houses currently available for sale. Additionally, users can create, edit, search, delete their own listings, and add them to their favorites.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Features
 
-## Type Support for `.vue` Imports in TS
+- View available houses for sale
+- Create, edit, search, and delete listings
+- Add your favorite listing to your favorites list
+- Sort products based on your preferences
+- View detailed listing descriptions
+- Enjoy a responsive and user-friendly design
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Demo
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+To see this project in action, you can visit the live demo [here](#).
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## Technologies Used
 
-## Customize configuration
+- Vue.js
+- Vite (bundling tool)
+- Typescript
+- JavaScript
+- HTML
+- CSS/SCSS
+- Pinia
+- Vue Router
+- Axios (API integration)
+- Vuelidate
+- Unhead
+- Lodash (debounce)
+- Vueuse
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Getting Started
 
-## Project Setup
+To get started with Estate Hub, follow these instructions:
 
-```sh
-npm install
-```
+### Prerequisites
 
-### Compile and Hot-Reload for Development
+Install Node.js version 18.3 or higher
 
-```sh
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/andrii-kovalskyi02/vue-estate-hub.git
+   ```
+
+1. Navigate to the project directory:
+
+   ```bash
+   cd vue-estate-hub
+   ```
+
+1. Install dependencies using npm:
+
+   ```bash
+   npm install
+   ```
+
+### Development
+
+To start the development server, run the following command:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Usage
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Visit http://localhost:8080 to begin exploring and using Estate Hub.
