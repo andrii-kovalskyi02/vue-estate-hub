@@ -22,9 +22,10 @@
         </div>
         <template v-if="!housesStore.isSearchLoading && !loading && !error">
           <template v-if="filteredHouses.length">
-            <div v-if="housesStore.searchQuery" class="houses-view__search-count">
-              <SearchResultsCount :filtered-data="filteredHouses" />
-            </div>
+            <SearchCount
+              :searchQuery="housesStore.searchQuery"
+              :filteredDataLength="filteredHouses.length"
+            />
             <HousesList :houses="filteredHouses" />
           </template>
           <div v-else class="houses-view__not-found-wrapper">
@@ -56,7 +57,6 @@ import HousesList from './components/HousesList.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
 import NotFound from '@/components/NotFound.vue'
 import TheSearch from '@/components/TheSearch.vue'
-import SearchResultsCount from '@/components/SearchResultsCount.vue'
 import HousesSorter from './components/HousesSorter.vue'
 import type { SortBy } from './houses.enums'
 import CreateNewHouseBtn from './components/CreateNewHouseBtn.vue'
@@ -64,13 +64,13 @@ import { housesRouteNames } from './houses.routes'
 import { ErrorMessages } from './houses.constants'
 import type { OrderKeys } from './houses.types'
 import useDynamicTitle from '@/composables/useDynamicTitle'
-
-useDynamicTitle()
-
-const route = useRoute()
+import SearchCount from './components/SearchCount.vue'
 
 const housesStore = useHousesStore()
 const { houses, loading, error } = storeToRefs(housesStore)
+
+const route = useRoute()
+useDynamicTitle()
 
 const sortedHouses = computed(() => {
   return sortHouses(houses.value, route.query.sort as SortBy, route.query.order as OrderKeys)

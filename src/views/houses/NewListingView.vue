@@ -18,7 +18,6 @@ import type { ListingFormData } from './houses.types'
 import useDynamicTitle from '@/composables/useDynamicTitle'
 
 useDynamicTitle()
-
 const { house, loading, error, dataOperation } = useHouseCrud()
 
 const handleSubmit = async (

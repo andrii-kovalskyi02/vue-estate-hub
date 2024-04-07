@@ -6,12 +6,12 @@ Estate Hub is a web application for house listings, providing users the ability 
 
 ### Features
 
-- View available houses for sale
-- Create, edit, search, and delete listings
-- Add your favorite listing to your favorites list
-- Sort products based on your preferences
-- View detailed listing descriptions
-- Enjoy a responsive and user-friendly design
+- **View available houses for sale**: Users can browse through a comprehensive list of houses that are currently available for sale. They can view images, pricing information, location details, and other relevant information about each property.
+- **Create, edit, search, and delete listings**: Users have the ability to create new listings for houses they want to sell. They can also edit existing listings to update information or add new details. A search functionality allows users to quickly find specific listings based on criteria such as location, price, or amount of rooms. Additionally, users can delete their listings if they are no longer relevant.
+- **Add your favorite listing to your favorites list**: Users can mark listings as their favorites, adding them to a personalized favorites list for easy access later on.
+- **Sort products based on your preferences**: Users can sort the list of available houses based on their preferences. This could include sorting by price, year of construction or size. Sorting options provide users with flexibility in how they want to explore the available listings.
+- **View detailed listing descriptions**: Each listing includes a detailed description of the property, providing users with important information such as property features, amenities, and any other relevant details. This allows users to make informed decisions when browsing through listings.
+- **Enjoy a responsive and user-friendly design**: The web application features a responsive design that adapts seamlessly to different screen sizes and devices. It offers a user-friendly interface with intuitive navigation, ensuring a smooth and enjoyable browsing experience for users across various devices.
 
 ## Demo
 

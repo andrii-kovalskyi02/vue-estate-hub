@@ -8,12 +8,11 @@
 import { computed } from 'vue'
 
 const props = defineProps<{
-  filteredData: Array<any>
+  filteredDataLength: number
 }>()
 
 const resultsMessage = computed(() => {
-  const itemCount = props.filteredData.length
-  return `${itemCount} ${itemCount === 1 ? 'result' : 'results'} found`
+  return `${props.filteredDataLength} ${props.filteredDataLength === 1 ? 'result' : 'results'} found`
 })
 </script>
 

@@ -39,6 +39,7 @@ const props = defineProps<{
 
 const router = useRouter()
 const route = useRoute()
+
 const query = ref('')
 const debounceDelay = ref(500)
 const loadingTimeout = ref<number>()

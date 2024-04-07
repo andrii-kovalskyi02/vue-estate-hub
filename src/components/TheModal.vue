@@ -32,6 +32,7 @@ const emit = defineEmits<{
 }>()
 
 const modalRef = ref<HTMLDivElement | null>(null)
+
 const { activate, deactivate } = useFocusTrap(modalRef)
 
 const close = () => {

@@ -24,7 +24,6 @@ const props = defineProps<{
 }>()
 
 useDynamicTitle()
-
 const { loading, error, dataOperation } = useHouseCrud()
 const { location, price, size, hasGarage, rooms, constructionYear, description } = props.houseData
 

@@ -1,59 +1,59 @@
 <template>
   <article class="house" tabindex="0">
     <div class="house__img-container">
-      <img :src="image" :alt="`${houseTitle} House Image`" className="house__img" />
+      <img :src="image" :alt="`${houseTitle} House Image`" class="house__img" />
     </div>
     <div class="house__info-container">
       <div class="house__base-line">
-        <h1 className="house__title">{{ houseTitle }}</h1>
+        <h1 class="house__title">{{ houseTitle }}</h1>
         <HouseActions v-if="!isMobile" :listing="house" />
       </div>
 
-      <div className="house__specs-container">
-        <div className="house__specs">
-          <div className="house__specs-icon">
+      <div class="house__specs-container">
+        <div class="house__specs">
+          <div class="house__specs-icon">
             <TheIcon type="location" />
           </div>
-          <h5 className="house__specs-value">{{ houseAddress }}</h5>
+          <h5 class="house__specs-value">{{ houseAddress }}</h5>
         </div>
         <div class="house__specs-group">
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="price" />
             </div>
-            <h5 className="house__specs-value">{{ formatNumberForUserLocale(price) }}</h5>
+            <h5 class="house__specs-value">{{ formatNumberForUserLocale(price) }}</h5>
           </div>
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="size" />
             </div>
-            <h5 className="house__specs-value">{{ size }} m2</h5>
+            <h5 class="house__specs-value">{{ size }} m2</h5>
           </div>
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="construction" />
             </div>
-            <h5 className="house__specs-value">Build in {{ constructionYear }}</h5>
+            <h5 class="house__specs-value">Build in {{ constructionYear }}</h5>
           </div>
         </div>
         <div class="house__specs-group">
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="bedroom" />
             </div>
-            <h5 className="house__specs-value">{{ rooms.bedrooms }}</h5>
+            <h5 class="house__specs-value">{{ rooms.bedrooms }}</h5>
           </div>
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="bathroom" />
             </div>
-            <h5 className="house__specs-value">{{ rooms.bathrooms }}</h5>
+            <h5 class="house__specs-value">{{ rooms.bathrooms }}</h5>
           </div>
-          <div className="house__specs">
-            <div className="house__specs-icon">
+          <div class="house__specs">
+            <div class="house__specs-icon">
               <TheIcon type="garage" />
             </div>
-            <h5 className="house__specs-value">{{ hasGarage ? 'Yes' : 'No' }}</h5>
+            <h5 class="house__specs-value">{{ hasGarage ? 'Yes' : 'No' }}</h5>
           </div>
         </div>
       </div>

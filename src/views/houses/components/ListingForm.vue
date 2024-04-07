@@ -326,8 +326,6 @@ const emit = defineEmits<{
   submit: [formData: ListingFormData, imgFile: FormData | null, redirect: () => void]
 }>()
 
-const router = useRouter()
-
 const initialFormData = {
   streetName: '',
   houseNumber: '',
@@ -354,6 +352,8 @@ const imgFileName = ref('')
 const isSubmitClicked = ref(false)
 const isModalOpen = ref(false)
 
+const router = useRouter()
+
 const isValidStreetName = (value: string) => /^[A-Za-z0-9\s\-']+$/.test(value)
 const isValidAddition = (value: string) => /^[A-Za-z0-9\s\-']*$/.test(value)
 const isValidZip = (value: string) => /^[1-9][0-9]{3}\s(?!SA|SD|SS)[A-Z]{2}$/.test(value)
@@ -372,12 +372,6 @@ const isValidImgType = () => {
 
   return false
 }
-
-watchEffect(() => {
-  if (props.error && isSubmitClicked.value) {
-    isModalOpen.value = true
-  }
-})
 
 const isImagePresent = computed(() => {
   return !imgFile.value?.has('image')
@@ -549,6 +543,12 @@ const handleSubmit = async () => {
 }
 
 const closeModal = () => (isModalOpen.value = false)
+
+watchEffect(() => {
+  if (props.error && isSubmitClicked.value) {
+    isModalOpen.value = true
+  }
+})
 
 onMounted(() => {
   if (props.listingImage && imgView.value) {

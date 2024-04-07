@@ -16,33 +16,16 @@
 
       <template v-if="!favoritesStore.isSearchLoading">
         <template v-if="filteredListings.length">
-          <div v-if="favoritesStore.searchQuery" class="favorites-view__search-count">
-            <SearchResultsCount
-              :filtered-data="filteredListings"
-              class="favorites-view__listing-count"
-            />
-          </div>
-          <div
-            v-else
-            class="favorites-view__listing-count"
-            aria-live="polite"
-            :aria-label="description"
-            tabindex="0"
-          >
-            {{ numberOfFavorites }}
-          </div>
-
+          <ResultsAndFavoritesCounter
+            :filtered-listings-length="filteredListings.length"
+            :number-of-favorites="numberOfFavorites"
+            :description="description"
+            :search-query="favoritesStore.searchQuery"
+          />
           <HousesList :houses="filteredListings" />
         </template>
         <div v-else class="favorites-view__not-found-wrapper">
-          <NotFound v-if="!favorites.length">
-            There are no favorite listings currently selected. <br />
-            Please feel free to browse our collection and add listings to your favorites list!
-          </NotFound>
-          <NotFound v-else>
-            No results found. <br />
-            Please try another keyword.
-          </NotFound>
+          <NoResultsMessage :hasFavorites="favorites.length > 0" />
         </div>
       </template>
       <div v-else class="favorites-view__loading-indicator-container">
@@ -57,19 +40,19 @@ import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import TheContainer from '@/components/TheContainer.vue'
 import LoadingIndicator from '@/components/LoadingIndicator.vue'
-import NotFound from '@/components/NotFound.vue'
 import TheSearch from '@/components/TheSearch.vue'
-import SearchResultsCount from '@/components/SearchResultsCount.vue'
 import { favoritesRouteNames } from './favorites.routes'
 import { filterHouses } from '@/utils/filterHouses'
 import HousesList from '../houses/components/HousesList.vue'
 import useFavoritesCountDescription from '@/composables/useFavoritesCountDescription'
 import useDynamicTitle from '@/composables/useDynamicTitle'
-
-useDynamicTitle()
+import ResultsAndFavoritesCounter from './components/ResultsAndFavoritesCounter.vue'
+import NoResultsMessage from './components/NoResultsMessage.vue'
 
 const { description, favoritesStore } = useFavoritesCountDescription()
 const { favorites, appliedSearchQuery } = storeToRefs(favoritesStore)
+
+useDynamicTitle()
 
 const filteredListings = computed(() => {
   return filterHouses(favorites.value, appliedSearchQuery.value)

@@ -46,8 +46,9 @@ import { useHousesStore } from '@/stores/houses'
 import RecommendedListings from './components/RecommendedListings.vue'
 import BackToOverviewBtn from '@/components/BackToOverviewBtn.vue'
 
-const route = useRoute()
 const housesStore = useHousesStore()
+
+const route = useRoute()
 const { house, loading, error, dataOperation } = useHouseCrud()
 const { isMobile } = useIsMobile()
 

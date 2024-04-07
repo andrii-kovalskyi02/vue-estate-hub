@@ -32,12 +32,6 @@ import TheIcon from '@/components/TheIcon.vue'
 const router = useRouter()
 const route = useRoute()
 
-const handleOptionsClick = (value: SortBy) => {
-  router.push({
-    query: { ...route.query, sort: value }
-  })
-}
-
 const isOrderAscending = computed(() => {
   return route.query.order === Order.ASC
 })
@@ -49,6 +43,12 @@ const sortHousesOrderAriaLabel = computed(() => {
 const nextSortOrder = computed(() => {
   return isOrderAscending.value ? Order.DESC : Order.ASC
 })
+
+const handleOptionsClick = (value: SortBy) => {
+  router.push({
+    query: { ...route.query, sort: value }
+  })
+}
 </script>
 
 <style scoped lang="scss">

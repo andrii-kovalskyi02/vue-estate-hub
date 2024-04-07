@@ -1,5 +1,5 @@
 <template>
-  <section className="card">
+  <section class="card">
     <RouterLink
       :to="{
         name: housesRouteNames.house,
@@ -7,34 +7,34 @@
           houseId: id
         }
       }"
-      className="card__link"
+      class="card__link"
     >
-      <img :src="image" :alt="`${cardTitle} House Image`" className="card__img" />
+      <img :src="image" :alt="`${cardTitle} House Image`" class="card__img" />
       <div class="card__info-wrapper">
         <div class="card__main-info-wrapper">
-          <h2 className="card__title">{{ cardTitle }}</h2>
-          <h3 className="card__price">&euro; {{ formatNumberForUserLocale(price) }}</h3>
-          <h3 className="card__address">{{ cardAddress }}</h3>
+          <h2 class="card__title">{{ cardTitle }}</h2>
+          <h3 class="card__price">&euro; {{ formatNumberForUserLocale(price) }}</h3>
+          <h3 class="card__address">{{ cardAddress }}</h3>
         </div>
 
-        <div className="card__specs-container">
-          <div className="card__specs">
-            <div className="card__specs-icon">
+        <div class="card__specs-container">
+          <div class="card__specs">
+            <div class="card__specs-icon">
               <TheIcon type="bedroom" />
             </div>
-            <h4 className="card__specs-value">{{ rooms.bedrooms }}</h4>
+            <h4 class="card__specs-value">{{ rooms.bedrooms }}</h4>
           </div>
-          <div className="card__specs">
-            <div className="card__specs-icon">
+          <div class="card__specs">
+            <div class="card__specs-icon">
               <TheIcon type="bathroom" />
             </div>
-            <h4 className="card__specs-value">{{ rooms.bathrooms }}</h4>
+            <h4 class="card__specs-value">{{ rooms.bathrooms }}</h4>
           </div>
-          <div className="card__specs">
-            <div className="card__specs-icon">
+          <div class="card__specs">
+            <div class="card__specs-icon">
               <TheIcon type="size" />
             </div>
-            <h4 className="card__specs-value">{{ size }} m2</h4>
+            <h4 class="card__specs-value">{{ size }} m2</h4>
           </div>
         </div>
       </div>

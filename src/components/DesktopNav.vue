@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <ul className="nav__list">
+    <ul class="nav__list">
       <li class="nav__item">
         <RouterLink :to="{ name: housesRouteNames.houses }" class="nav__logo-link">
           <img src="/images/img_logo_dtt@3x.png" alt="DTT Logo" class="nav__logo-img" />

@@ -7,8 +7,11 @@ export function findValueByKey<T extends ObjectWithNestedValues>(
   for (const key in obj) {
     if (key === keyToFind) {
       return obj[key]
-    } else if (typeof obj[key] === 'object') {
+    }
+
+    if (typeof obj[key] === 'object') {
       const result = findValueByKey(obj[key], keyToFind)
+
       if (result !== undefined) {
         return result
       }

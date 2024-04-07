@@ -4,7 +4,7 @@
       <div class="modal-delete-listing__messages-wrapper">
         <h1 class="modal-delete-listing__title">Delete listing</h1>
         <h2 class="modal-delete-listing__subtitle">
-          Are you shure you want to delete this listing?
+          Are you sure you want to delete this listing?
           <br />
           This action cannot be undone.
         </h2>
