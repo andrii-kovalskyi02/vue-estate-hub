@@ -1,0 +1,45 @@
+// colors
+
+$primary-color: #eb5440;
+$primary-color-hover: #e73018;
+
+$secondary-color: #4a4b4c;
+$secondary-color-hover: #494a4b99;
+
+$tertiary-color-1: #e8e8e8;
+$tertiary-color-2: #c3c3c3;
+
+$background-color-1: #f6f6f6;
+$background-color-2: #ffffff;
+
+$text-color-primary: #000000;
+$text-color-white: #ffffff;
+$text-color-hyperlink: #067bc2;
+$text-color-hyperlink-visited: #004d8a;
+$text-color-hyperlink-hovered: #48b2f4;
+
+// font families
+
+$font-open-sans: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-montserrat: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+// animations
+
+$transition-duration: 0.3s;
+
+$initialAnimation: fadeIn $transition-duration ease-in-out;
+
+// shadows
+
+$primaryShadowBox: 0px 0px 21px -5px rgba(0, 0, 0, 0.15);
+$primaryHoverShadowBox: 0 3px 13px 0 rgba(23, 32, 49, 0.26);
+
+// breakpoints
+
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+// other
+
+$mobileHeaderHeight: 60px;
+$paddingDefault: 25px;
